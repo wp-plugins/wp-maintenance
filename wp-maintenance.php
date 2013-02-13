@@ -12,6 +12,8 @@ Version: 0.1
 
 /*
 Change Log
+12/02/2013 - Ajout fonctionnalité et débugage
+11/02/2013 - Modification nom de fonctions
 24/01/2013 - Création du Plugin
 */
 
