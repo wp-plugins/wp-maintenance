@@ -1,4 +1,4 @@
-=== Plugin Name ===
+    === Plugin Name ===
 Contributors: Florent73
 Donate link: 
 Tags: wordpress maintenance plugin
@@ -9,10 +9,14 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
-Créer et personnalisér votre page de maintenance
+Créer et personnaliser votre page de maintenance !
 
 == Description ==
 Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance. Personnalisez cette page de maintenance.
+
+Langues disponibles :
+
+* Français
 
 == Installation ==
 1. Ajouter le répertoire 'wp-maintenance' dans le répertoire '/wp-content/plugins/'.
@@ -20,11 +24,10 @@ Le plugin WP Maintenance vous permet de mettre votre site en attente le temps po
 1. Aller dans 'Réglages->WP Maintenance' dans l'interface d'administration pour sélectionner vos options.
 
 == Screenshots ==
-1./assets/screenshot-1.png
-2./assets/screenshot-2.png
-3./assets/screenshot-3.png
-4./assets/screenshot-4.png
-5./assets/screenshot-5.png
+1.Vue générale
+2.Vue par les visiteurs de votre site (mais pas les admins)
+3.Sélection de couleur
+4.Upload d'une image personnelle
 
 == Frequently Asked Questions ==
 
