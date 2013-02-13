@@ -152,6 +152,5 @@ add_action('get_header', 'maintenance_mode');
 
 //intègre le tout aux pages Admin de Wordpress
 add_action("admin_menu", "addWpMaintenanceAdmin");
-add_action('wp_head', 'wpMaintenanceCSS' );
 
 ?>
