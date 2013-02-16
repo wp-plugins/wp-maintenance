@@ -46,7 +46,7 @@ Cette version est stable. Plus de conflit de nom de fonction. ColorPicker Ajout√
 == Changelog ==
 
 = 0.2 =
-* Ajout du ColorPiker.
+* Ajout du ColorPicker.
 
 = 0.1 =
 * Premi√®re version du plugin.
