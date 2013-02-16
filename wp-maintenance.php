@@ -6,12 +6,13 @@ Plugin URI: http://www.restezconnectes.fr/plugins/wp-maintenance.zip
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance. Personnalisez cette page de maintenance.
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 0.1
+Version: 0.2
 */
 
 
 /*
 Change Log
+16/02/2013 - Ajout ColorPicker
 12/02/2013 - Ajout fonctionnalité et débugage
 11/02/2013 - Modification nom de fonctions
 24/01/2013 - Création du Plugin
@@ -36,7 +37,7 @@ function WpMaintenancePlugin_actions ( $links ) {
 }
 
 /* Ajoute la version dnas les options */
-define('WPM_VERSION', '0.1');
+define('WPM_VERSION', '0.2');
 $option['wp_maintenance_version'] = WPM_VERSION;
 add_option('wp_maintenance_version',$option);
 
@@ -67,14 +68,15 @@ function addWpMaintenanceAdmin() {
 function WpMaintenanceAdminScripts() {
     wp_enqueue_script('media-upload');
     wp_enqueue_script('thickbox');
-    wp_register_script('my-upload', WP_PLUGIN_URL.'/wp-maintenance/wpm-script.js', array('jquery','media-upload','thickbox'));
-    wp_enqueue_script('my-upload');
+    wp_register_script('wpm-my-upload', WP_PLUGIN_URL.'/wp-maintenance/wpm-script.js', array('jquery','media-upload','thickbox'));
+    wp_enqueue_script('wpm-my-upload');
 }
 
-function WpMaintenanceEnqueueColorPicker( $hook_suffix ) {
+add_action( 'admin_enqueue_scripts', 'mw_enqueue_color_picker' );
+function mw_enqueue_color_picker( $hook_suffix ) {
     // first check that $hook_suffix is appropriate for your admin page
     wp_enqueue_style( 'wp-color-picker' );
-    wp_enqueue_script( 'wp_maintenance_settings', WP_PLUGIN_URL.'/wp-maintenance/wpm-color-options.js', array( 'wp-color-picker', 'jquery' ) );
+    wp_enqueue_script( 'my-script-handle', plugins_url('wpm-color-options.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
 }
 
 function WpMaintenanceAdminStyles() {
@@ -152,6 +154,5 @@ add_action('get_header', 'maintenance_mode');
 
 //intègre le tout aux pages Admin de Wordpress
 add_action("admin_menu", "addWpMaintenanceAdmin");
-add_action('wp_head', 'wpMaintenanceCSS' );
 
 ?>

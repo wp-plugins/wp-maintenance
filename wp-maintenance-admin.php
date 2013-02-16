@@ -34,8 +34,8 @@ if($_POST['action'] == 'update') {
             <!-- COULEUR DU FOND DE PAGE -->
             <li><h3>Choix des couleurs :</h3>
                 <div id="pmColor" style="position: relative;">
-                       <em>Couleur du fond</em> <br /><input type="text" value="<?php echo $paramMMode['color_bg']; ?>" name="wp_maintenance_settings[color_bg]" class="my-color-field" data-default-color="#f1f1f1" /> <br />
-                       <em>Couleur du texte</em> <br /><input type="text" value="<?php echo $paramMMode['color_txt']; ?>" name="wp_maintenance_settings[color_txt]" class="my-color-field" data-default-color="#888888" />
+                       <em>Couleur du fond</em> <br /><input type="text" value="<?php echo $paramMMode['color_bg']; ?>" name="wp_maintenance_settings[color_bg]" class="wpm-color-field" data-default-color="#f1f1f1" /> <br />
+                       <em>Couleur du texte</em> <br /><input type="text" value="<?php echo $paramMMode['color_txt']; ?>" name="wp_maintenance_settings[color_txt]" class="wpm-color-field" data-default-color="#888888" />
                 </div>
             </li>
             <li> &nbsp;</li>
@@ -63,5 +63,15 @@ if($_POST['action'] == 'update') {
           </ul>
         </div>
     </form>
+    <!-- FAIRE UN DON SUR PAYPAL -->
+    <div style="border:1px solid #F1F1F1;text-align: center;background-color:#F1F1F1;padding: 15px;">Si vous souhaitez me soutenir pour les développements actuels et futurs :
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="ABGJLUXM5VP58">
+        <input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
+        <img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+        </form>
+    </div>
+    <!-- FIN FAIRE UN DON -->
 </div>
 

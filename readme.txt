@@ -1,4 +1,4 @@
-    === Plugin Name ===
+=== Plugin Name ===
 Contributors: Florent73
 Donate link: 
 Tags: wordpress maintenance plugin
@@ -24,10 +24,10 @@ Langues disponibles :
 1. Aller dans 'Réglages->WP Maintenance' dans l'interface d'administration pour sélectionner vos options.
 
 == Screenshots ==
-1.Vue générale
-2.Vue par les visiteurs de votre site (mais pas les admins)
-3.Sélection de couleur
-4.Upload d'une image personnelle
+1. Vue générale
+2. Vue par les visiteurs de votre site (mais pas les admins)
+3. Sélection de couleur
+4. Upload d'une image personnelle
 
 == Frequently Asked Questions ==
 
@@ -39,11 +39,14 @@ Merci de me soumettre les modifications souhaitées afin de mettre à jour le pl
 
 == Upgrade Notice ==
 
-= 0.1 =
-Cette version est stable. Plus de conflit de nom de fonction.
+= 0.2 =
+Cette version est stable. Plus de conflit de nom de fonction. ColorPicker Ajouté.
 
 
 == Changelog ==
+
+= 0.2 =
+* Ajout du ColorPiker.
 
 = 0.1 =
 * Première version du plugin.
