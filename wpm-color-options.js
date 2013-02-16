@@ -1,4 +1,4 @@
-var myOptions = {
+var wpmOptions = {
     // you can declare a default color here,
     // or in the data-default-color attribute on the input
     defaultColor: false,
@@ -14,5 +14,5 @@ var myOptions = {
 };
 
 jQuery(document).ready(function($){
-    $('.my-color-field').wpColorPicker(myOptions);
+    $('.wpm-color-field').wpColorPicker(wpmOptions);
 });

@@ -67,14 +67,15 @@ function addWpMaintenanceAdmin() {
 function WpMaintenanceAdminScripts() {
     wp_enqueue_script('media-upload');
     wp_enqueue_script('thickbox');
-    wp_register_script('my-upload', WP_PLUGIN_URL.'/wp-maintenance/wpm-script.js', array('jquery','media-upload','thickbox'));
-    wp_enqueue_script('my-upload');
+    wp_register_script('wpm-my-upload', WP_PLUGIN_URL.'/wp-maintenance/wpm-script.js', array('jquery','media-upload','thickbox'));
+    wp_enqueue_script('wpm-my-upload');
 }
 
 function WpMaintenanceEnqueueColorPicker( $hook_suffix ) {
     // first check that $hook_suffix is appropriate for your admin page
-    wp_enqueue_style( 'wp-color-picker' );
-    wp_enqueue_script( 'wp_maintenance_settings', WP_PLUGIN_URL.'/wp-maintenance/wpm-color-options.js', array( 'wp-color-picker', 'jquery' ) );
+    wp_enqueue_style( 'color-picker' );
+    wp_enqueue_script( 'wpm_color-picker', WP_PLUGIN_URL.'/wp-maintenance/wpm-color-options.js', array('jquery','color-picker'));
+    wp_enqueue_script('wpm_color-picker');
 }
 
 function WpMaintenanceAdminStyles() {

@@ -34,8 +34,8 @@ if($_POST['action'] == 'update') {
             <!-- COULEUR DU FOND DE PAGE -->
             <li><h3>Choix des couleurs :</h3>
                 <div id="pmColor" style="position: relative;">
-                       <em>Couleur du fond</em> <br /><input type="text" value="<?php echo $paramMMode['color_bg']; ?>" name="wp_maintenance_settings[color_bg]" class="my-color-field" data-default-color="#f1f1f1" /> <br />
-                       <em>Couleur du texte</em> <br /><input type="text" value="<?php echo $paramMMode['color_txt']; ?>" name="wp_maintenance_settings[color_txt]" class="my-color-field" data-default-color="#888888" />
+                       <em>Couleur du fond</em> <br /><input type="text" value="<?php echo $paramMMode['color_bg']; ?>" name="wp_maintenance_settings[color_bg]" class="wpm-color-field" data-default-color="#f1f1f1" /> <br />
+                       <em>Couleur du texte</em> <br /><input type="text" value="<?php echo $paramMMode['color_txt']; ?>" name="wp_maintenance_settings[color_txt]" class="wpm-color-field" data-default-color="#888888" />
                 </div>
             </li>
             <li> &nbsp;</li>
