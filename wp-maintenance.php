@@ -86,7 +86,6 @@ function WpMaintenanceAdminStyles() {
 if (isset($_GET['page']) && $_GET['page'] == 'wp-maintenance/wp-maintenance.php') {
     add_action('admin_print_scripts', 'WpMaintenanceAdminScripts');
     add_action('admin_print_styles', 'WpMaintenanceAdminStyles');
-    add_action( 'admin_enqueue_scripts', 'WpMaintenanceEnqueueColorPicker' );
 }
 
 /* Mode Mainteance */
