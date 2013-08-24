@@ -231,7 +231,7 @@ function maintenance_mode() {
                      $content .= '<div id="intro" class="block"><h3>'.$paramMMode['titre_maintenance'].'</h3><p>'.$paramMMode['text_maintenance'].'</p></div>';
                      if( isset($paramMMode['message_cpt_fin']) && $paramMMode['message_cpt_fin']!='' && $paramMMode['date_cpt_aa']!='' && $paramMMode['active_cpt']==1) {
                      $content .='
-                        <div style="margin-left:auto;margin-right:auto;text-align: center;margin-top:30px;">'.strtotime(date('Y')+1.'/'.date('m').'/'.date('d').' 10:00').'
+                        <div style="margin-left:auto;margin-right:auto;text-align: center;margin-top:30px;">
                          <script language="JavaScript">
                             TargetDate = "'.$dateCpt.'";
                             BackColor = "'.$paramMMode['color_cpt_bg'].'";
