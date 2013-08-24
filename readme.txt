@@ -12,7 +12,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Créer et personnaliser votre page de maintenance !
 
 == Description ==
-Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance. Personnalisez cette page de maintenance.
+Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance. Personnalisez cette page de maintenance avec une image, un compte à rebours.
 
 Langues disponibles :
 
@@ -26,8 +26,9 @@ Langues disponibles :
 == Screenshots ==
 1. Vue générale
 2. Vue par les visiteurs de votre site (mais pas les admins)
-3. Sélection de couleur
+3. Sélection des couleurs
 4. Upload d'une image personnelle
+5. Paramètres du compte à rebours
 
 == Frequently Asked Questions ==
 
