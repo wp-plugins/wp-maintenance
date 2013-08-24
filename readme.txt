@@ -3,7 +3,7 @@ Contributors: Florent73
 Donate link: 
 Tags: wordpress maintenance plugin
 Requires at least: 2.0
-Tested up to: 3.3.1
+Tested up to: 3.6
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -35,15 +35,18 @@ Ce plugin est-il gratuit ?
 Oui tout à fait.
 
 Puis-je modifier le code du plugin ?
-Merci de me soumettre les modifications souhaitées afin de mettre à jour le plugin.
+Oui mais merci de me soumettre les modifications souhaitées afin de mettre à jour le plugin.
 
 == Upgrade Notice ==
 
-= 0.2 =
-Cette version est stable. Plus de conflit de nom de fonction. ColorPicker Ajouté.
+= 0.3 =
+Cette version est stable.
 
 
 == Changelog ==
+
+= 0.3 =
+* Refonte de l'admin et ajout d'un compte à rebours
 
 = 0.2 =
 * Ajout du ColorPicker.
