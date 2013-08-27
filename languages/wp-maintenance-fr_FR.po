@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Maintenance\n"
-"POT-Creation-Date: 2013-08-27 20:04+0100\n"
-"PO-Revision-Date: 2013-08-27 20:05+0100\n"
+"POT-Creation-Date: 2013-08-27 20:30+0100\n"
+"PO-Revision-Date: 2013-08-27 20:31+0100\n"
 "Last-Translator: Florent <contact@restezconnectes.fr>\n"
 "Language-Team: Florent Maillefaud <contact@restezconnectes.fr>\n"
 "Language: Français\n"
@@ -145,13 +145,11 @@ msgid "Theme maintenance page :"
 msgstr "Page maintenance du thème :"
 
 #: /Users/Florent/Sites/wordpress.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:178
-#, fuzzy
 msgid ""
-"If this parameter is set to Yes, this is the maintenance.php page of your "
-"theme to be displayed"
+"If you would use your maintenance.php page in your theme folder, click Yes."
 msgstr ""
-"Si ce paramètre est sur Oui, c'est la page maintenance.php de votre thème "
-"qui sera affichée"
+"Si vous souhaitez utiliser votre page maintenance.php dans le dossier de "
+"votre thème, cliquez sur Oui."
 
 #: /Users/Florent/Sites/wordpress.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:200
 msgid ""
@@ -194,6 +192,14 @@ msgstr "Minutes"
 #: /Users/Florent/Sites/wordpress.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance.php:253
 msgid "Seconds"
 msgstr "Secondes"
+
+#, fuzzy
+#~ msgid ""
+#~ "If this parameter is set to Yes, this is the maintenance.php page of your "
+#~ "theme to be displayed"
+#~ msgstr ""
+#~ "Si ce paramètre est sur Oui, c'est la page maintenance.php de votre thème "
+#~ "qui sera affichée"
 
 #~ msgid "Day"
 #~ msgstr "Jour"
