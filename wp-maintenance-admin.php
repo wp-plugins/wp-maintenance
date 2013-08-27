@@ -175,7 +175,7 @@ $paramMMode = get_option('wp_maintenance_settings');
                          <ul>
                             <!-- UTILISER UNE PAGE MAINTENANCE.PHP -->
                             <li><h3><?php echo __('Theme maintenance page :', 'wp-maintenance'); ?></h3>
-                                <?php echo __('Theme maintenance page :', 'wp-maintenance'); ?>&nbsp;<br /><br />
+                                <?php echo __('If this parameter is set to Yes, this is the maintenance.php page of your theme to be displayed', 'wp-maintenance'); ?>&nbsp;<br /><br />
                                 <input type= "radio" name="wp_maintenance_settings[pageperso]" value="1" <?php if($paramMMode['pageperso']==1) { echo ' checked'; } ?>>&nbsp;<?php echo __('Yes', 'wp-maintenance'); ?>&nbsp;&nbsp;&nbsp;
                                 <input type= "radio" name="wp_maintenance_settings[pageperso]" value="0" <?php if(!$paramMMode['pageperso'] or $paramMMode['pageperso']==0) { echo ' checked'; } ?>>&nbsp;<?php echo __('No', 'wp-maintenance'); ?>
                             </li>
