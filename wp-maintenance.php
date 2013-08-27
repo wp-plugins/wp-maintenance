@@ -32,9 +32,15 @@ define( 'WPM_SETTINGS', $wpmaintenance_dashboard);
 // Add "Réglages" link on plugins page
 add_filter( 'plugin_action_links_' . WPM_BASENAME, 'WpMaintenancePlugin_actions' );
 function WpMaintenancePlugin_actions ( $links ) {
-    $settings_link = '<a href="'.WPM_SETTINGS.'">'.__('Réglages', 'wp-maintenance').'</a>';
+    $settings_link = '<a href="'.WPM_SETTINGS.'">'.__('Settings', 'wp-maintenance').'</a>';
     array_unshift ( $links, $settings_link );
     return $links;
+}
+
+// multilingue
+add_action( 'init', 'make_wpm_multilang' );
+function make_wpm_multilang() {
+    load_plugin_textdomain('wp-maintenance', false, dirname( plugin_basename( __FILE__ ) ).'/languages');
 }
 
 /* Ajoute la version dnas les options */
@@ -54,7 +60,7 @@ function addWpMaintenanceAdmin() {
         'active' => 0,  
         'color_bg' => "#f1f1f1",
         'color_txt' => '#888888',
-        'text_maintenance' => 'Ce site est en maintenance',
+        'text_maintenance' => __('This site is down for maintenance', 'wp-maintenance'),
         'image' => WP_PLUGIN_URL.'/wp-maintenance/default.png',
     );  
     $getMaintenanceSettings = get_option('wp_maintenance_settings');  
@@ -141,7 +147,7 @@ function maintenance_mode() {
             $content .= $site_title." - ".$site_description;
             $content .= '</title>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-                <meta name="description" content="Site en maintenance" />
+                <meta name="description" content="'.__('This site is down for maintenance', 'wp-maintenance').'" />
                 <style type="text/css">
                     h1 { margin-left:auto;margin-right:auto;width: 700px;padding: 10px;text-align:center;color:'.$paramMMode['color_txt'].'; }
                     body {
@@ -241,9 +247,9 @@ function maintenance_mode() {
                             CountStepper = -1;
                             LeadingZero = true;
                      ';
-                     $content .= "   DisplayFormat = '<div id=\"cptR-day\">%%D%%<span id=\"cptR-days-span\">Jours</span></div><div id=\"cptR-hours\">%%H%%<span id=\"cptR-hours-span\">Heures</span></div><div id=\"cptR-minutes\">%%M%%<span id=\"cptR-minutes-span\">Minutes</span></div>";
+                     $content .= "   DisplayFormat = '<div id=\"cptR-day\">%%D%%<span id=\"cptR-days-span\">".__('Days', 'wp-maintenance')."</span></div><div id=\"cptR-hours\">%%H%%<span id=\"cptR-hours-span\">".__('Hours', 'wp-maintenance')."</span></div><div id=\"cptR-minutes\">%%M%%<span id=\"cptR-minutes-span\">".__('Minutes', 'wp-maintenance')."</span></div>";
                      if($paramMMode['active_cpt_s']==1) {
-                        $content .= '<div id="cptR-seconds">%%S%%<span id="cptR-seconds-span">Secondes</span></div>';
+                        $content .= '<div id="cptR-seconds">%%S%%<span id="cptR-seconds-span">'.__('Seconds', 'wp-maintenance').'</span></div>';
                      }
                      $content .= "';
                             FinishMessage = '".$paramMMode['message_cpt_fin']."';
