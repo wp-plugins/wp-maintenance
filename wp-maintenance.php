@@ -6,12 +6,13 @@ Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance. Personnalisez cette page de maintenance.
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 0.5
+Version: 0.6
 */
 
 
 /*
 Change Log
+11/09/2013 - Conflits javascript résolus
 30/08/2013 - CSS personnalisable
 27/08/2013 - Ajout du multilangue
 23/08/2013 - Refonte de l'admin et ajout d'un compte à rebours
@@ -46,7 +47,7 @@ function make_wpm_multilang() {
 }
 
 /* Ajoute la version dnas les options */
-define('WPM_VERSION', '0.5');
+define('WPM_VERSION', '0.6');
 $option['wp_maintenance_version'] = WPM_VERSION;
 add_option('wp_maintenance_version',$option);
 
@@ -95,11 +96,11 @@ function wpm_admin_scripts() {
     wp_register_script('wpm-admin-settings', WP_PLUGIN_URL.'/wp-maintenance/wpm-admin-settings.js');
     wp_enqueue_script('wpm-admin-settings');
 }
-add_action('admin_print_scripts', 'wpm_admin_scripts');
 
 if (isset($_GET['page']) && $_GET['page'] == 'wp-maintenance/wp-maintenance.php') {
     add_action('admin_print_scripts', 'WpMaintenanceAdminScripts');
     add_action('admin_print_styles', 'WpMaintenanceAdminStyles');
+    add_action('admin_print_scripts', 'wpm_admin_scripts');
 }
 
 /* Mode Mainteance */

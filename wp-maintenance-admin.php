@@ -267,7 +267,7 @@ echo $paramMMode['styless'];
                             </li>
                             <li> &nbsp;</li>
                             <li>
-                                <a href="#4" id="submitbutton" OnClick="document.forms['valide_maintenance'].submit();this.blur();" name="Save" class="button-primary"><span> <?php echo __('Save this settings', 'wp-maintenance'); ?> </span></a>
+                                <a href="#compte" id="submitbutton" OnClick="document.forms['valide_maintenance'].submit();this.blur();" name="Save" class="button-primary"><span> <?php echo __('Save this settings', 'wp-maintenance'); ?> </span></a>
                             </li>
                         </ul>
                  </div>
