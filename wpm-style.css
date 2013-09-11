@@ -1,0 +1,5 @@
+#wp-admin-bar-wp-maintenance-active {
+background-color: #d00;
+background-image: -moz-linear-gradient(bottom, #f44, #d00 );
+background-image: -webkit-gradient(linear, left bottom, left top, from(#f44), to(#d00));
+}
