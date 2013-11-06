@@ -6,12 +6,13 @@ Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance. Personnalisez cette page de maintenance.
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 0.7
+Version: 0.8
 */
 
 
 /*
 Change Log
+06/11/2013 - Bugs sur le compte à rebours
 03/10/2013 - Bugs sur les couleurs
 11/09/2013 - Conflits javascript résolus
 30/08/2013 - CSS personnalisable
@@ -50,7 +51,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dnas les options */
-define('WPM_VERSION', '0.7');
+define('WPM_VERSION', '0.8');
 $option['wp_maintenance_version'] = WPM_VERSION;
 add_option('wp_maintenance_version',$option);
 
@@ -241,32 +242,37 @@ function wpm_maintenance_mode() {
                 "#_COLORCPT" => $paramMMode['color_cpt']
             );
             $wpmStyle = str_replace(array_keys($styleRemplacements), array_values($styleRemplacements), get_option('wp_maintenance_style'));
-
+            if($paramMMode['message_cpt_fin']=='') { $paramMMode['message_cpt_fin'] = '&nbsp;'; }
+            
             $content = '
-            <!DOCTYPE html>
-            <html lang="fr">
-              <head>
-                <title>';
-            $content .= $site_title." - ".$site_description;
-            $content .= '</title>
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-                <meta name="description" content="'.__('This site is down for maintenance', 'wp-maintenance').'" />
-                <style type="text/css">'.$wpmStyle.'</style>
-              </head>
-              <body><div id="wrapper">
-              ';
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>'.$site_title." - ".$site_description.'</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="'.__('This site is down for maintenance', 'wp-maintenance').'" />
+        <style type="text/css">
+            '.$wpmStyle.'
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">';
 
                      if($paramMMode['image']) {
-                        $content .= '<div id="header" class="full">
-                        <div id="logo"><img src="'.$paramMMode['image'].'" width="'.$img_width.'px" /></div>
-                        </div>
+                        $content .= '
+            <div id="header" class="full">
+                <div id="logo"><img src="'.$paramMMode['image'].'" width="'.$img_width.'px" /></div>
+            </div>
                         ';
                      }
-                     $content .= '<div id="content" class="full"><div id="main">';
-                     $content .= '<div id="intro" class="block"><h3>'.$paramMMode['titre_maintenance'].'</h3><p>'.$paramMMode['text_maintenance'].'</p></div>';
+         $content .= '
+             <div id="content" class="full">
+                 <div id="main">';
+                     $content .= '
+                    <div id="intro" class="block"><h3>'.$paramMMode['titre_maintenance'].'</h3><p>'.$paramMMode['text_maintenance'].'</p></div>';
                      if( isset($paramMMode['message_cpt_fin']) && $paramMMode['message_cpt_fin']!='' && $paramMMode['date_cpt_aa']!='' && $paramMMode['active_cpt']==1) {
                      $content .='
-                        <div style="margin-left:auto;margin-right:auto;text-align: center;margin-top:30px;">
+                    <div style="margin-left:auto;margin-right:auto;text-align: center;margin-top:30px;">
                          <script language="JavaScript">
                             TargetDate = "'.$dateCpt.'";
                             BackColor = "'.$paramMMode['color_cpt_bg'].'";
@@ -283,15 +289,16 @@ function wpm_maintenance_mode() {
                      $content .= "';
                             FinishMessage = '".$paramMMode['message_cpt_fin']."';
                         </script>";
-                     $content .= '<script language="JavaScript" src="'.WP_PLUGIN_URL.'/wp-maintenance/wpm-cpt-script.js"></script>
-                        </div>';
+                     $content .= '
+                        <script language="JavaScript" src="'.WP_PLUGIN_URL.'/wp-maintenance/wpm-cpt-script.js"></script>
+                    </div>';
                         }
                      $content .= '
-                    </div><!-- div main -->
-                </div><!-- div content -->
-            </div><!-- div wrapper -->
-      </body>
-    </html>';
+                </div><!-- div main -->
+            </div><!-- div content -->
+        </div><!-- div wrapper -->
+    </body>
+</html>';
         }
         die($content);
     }
