@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: WP Maintenance
-Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
+Plugin URI: http://www.restezconnectes.fr/wordpress-votre-nouveau-plugin-de-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance. Personnalisez cette page de maintenance.
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
