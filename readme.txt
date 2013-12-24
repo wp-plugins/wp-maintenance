@@ -3,8 +3,8 @@ Contributors: Florent73
 Donate link: 
 Tags: wordpress maintenance plugin
 Requires at least: 2.0
-Tested up to: 3.6
-Stable tag: 0.8
+Tested up to: 3.8
+Stable tag: 0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,14 +48,17 @@ Oui mais merci de me soumettre les modifications souhaitées afin de mettre à j
 
 == Upgrade Notice ==
 
-= 0.8 =
+= 0.9 =
 Cette version est stable / This version is stable
 
 
 == Changelog ==
 
+= 0.9 =
+* Bugs ajout lien dans textes / Bug add link in texts
+
 = 0.8 =
-* Bugs sur le compte à rebours
+* Bugs sur le compte à rebours / Countdown bug fixes
 
 = 0.7 =
 * Bugs sur les couleurs résolus / Colors Bugs fixed 

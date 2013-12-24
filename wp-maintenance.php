@@ -2,16 +2,17 @@
 
 /*
 Plugin Name: WP Maintenance
-Plugin URI: http://www.restezconnectes.fr/wordpress-votre-nouveau-plugin-de-maintenance/
+Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance. Personnalisez cette page de maintenance.
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 0.8
+Version: 0.9
 */
 
 
 /*
 Change Log
+24/12/2013 - Bugs ajout de lien dans les textes
 06/11/2013 - Bugs sur le compte à rebours
 03/10/2013 - Bugs sur les couleurs
 11/09/2013 - Conflits javascript résolus
@@ -51,7 +52,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dnas les options */
-define('WPM_VERSION', '0.8');
+define('WPM_VERSION', '0.9');
 $option['wp_maintenance_version'] = WPM_VERSION;
 add_option('wp_maintenance_version',$option);
 
@@ -269,7 +270,7 @@ function wpm_maintenance_mode() {
              <div id="content" class="full">
                  <div id="main">';
                      $content .= '
-                    <div id="intro" class="block"><h3>'.$paramMMode['titre_maintenance'].'</h3><p>'.$paramMMode['text_maintenance'].'</p></div>';
+                    <div id="intro" class="block"><h3>'.stripslashes($paramMMode['titre_maintenance']).'</h3><p>'.stripslashes($paramMMode['text_maintenance']).'</p></div>';
                      if( isset($paramMMode['message_cpt_fin']) && $paramMMode['message_cpt_fin']!='' && $paramMMode['date_cpt_aa']!='' && $paramMMode['active_cpt']==1) {
                      $content .='
                     <div style="margin-left:auto;margin-right:auto;text-align: center;margin-top:30px;">
@@ -287,7 +288,7 @@ function wpm_maintenance_mode() {
                         $content .= '<div id="cptR-seconds">%%S%%<span id="cptR-seconds-span">'.__('Seconds', 'wp-maintenance').'</span></div>';
                      }
                      $content .= "';
-                            FinishMessage = '".$paramMMode['message_cpt_fin']."';
+                            FinishMessage = '".stripslashes($paramMMode['message_cpt_fin'])."';
                         </script>";
                      $content .= '
                         <script language="JavaScript" src="'.WP_PLUGIN_URL.'/wp-maintenance/wpm-cpt-script.js"></script>

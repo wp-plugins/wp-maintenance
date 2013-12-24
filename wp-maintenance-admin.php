@@ -143,8 +143,8 @@ if($_POST['wpm_initcss']==1) {
                         <!-- TEXTE PERSONNEL POUR LA PAGE -->
                         <li>
                             <h3><?php echo __('Title and text for the maintenance page :', 'wp-maintenance'); ?></h3>
-                            <?php echo __('Title :', 'wp-maintenance'); ?><br /><input type="text" name="wp_maintenance_settings[titre_maintenance]" value="<?php echo $paramMMode['titre_maintenance'] ?>" /><br />
-                            <?php echo __('Texte :', 'wp-maintenance'); ?><br /><TEXTAREA NAME="wp_maintenance_settings[text_maintenance]" COLS=70 ROWS=4><?php echo $paramMMode['text_maintenance'] ?></TEXTAREA>
+                            <?php echo __('Title :', 'wp-maintenance'); ?><br /><input type="text" name="wp_maintenance_settings[titre_maintenance]" value="<?php echo stripslashes($paramMMode['titre_maintenance']); ?>" /><br />
+                            <?php echo __('Texte :', 'wp-maintenance'); ?><br /><TEXTAREA NAME="wp_maintenance_settings[text_maintenance]" COLS=70 ROWS=4><?php echo stripslashes($paramMMode['text_maintenance']); ?></TEXTAREA>
                         </li>
                         <li> &nbsp;</li>
 
@@ -245,7 +245,7 @@ if($_POST['wpm_initcss']==1) {
                                 <input type="hidden" name=wp_maintenance_settings[date_cpt_ss]" value="<?php if($paramMMode['date_cpt_ss']!='') { echo $paramMMode['date_cpt_ss']; } else { echo date('s'); } ?>" />
                                 <br /><br />
                                 <input type= "checkbox" name="wp_maintenance_settings[active_cpt_s]" value="1" <?php if($paramMMode['active_cpt_s']==1) { echo ' checked'; } ?>>&nbsp;<?php echo __('Enable seconds ?', 'wp-maintenance'); ?><br /><br />
-                                 <?php echo __('End message :', 'wp-maintenance'); ?><br /><TEXTAREA NAME="wp_maintenance_settings[message_cpt_fin]" COLS=70 ROWS=4><?php echo $paramMMode['message_cpt_fin']; ?></TEXTAREA><br /><?php echo __('Font size :', 'wp-maintenance'); ?>  <select name=wp_maintenance_settings[date_cpt_size]">
+                                 <?php echo __('End message :', 'wp-maintenance'); ?><br /><TEXTAREA NAME="wp_maintenance_settings[message_cpt_fin]" COLS=70 ROWS=4><?php echo stripslashes($paramMMode['message_cpt_fin']); ?></TEXTAREA><br /><?php echo __('Font size :', 'wp-maintenance'); ?>  <select name=wp_maintenance_settings[date_cpt_size]">
                                             <?php
                                                 $ctpSize = array('18', '24', '36', '48', '52', '56', '60', '64', '68', '72', '76');
                                                 foreach($ctpSize as $c) {
