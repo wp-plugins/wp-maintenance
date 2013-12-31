@@ -6,12 +6,13 @@ Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture and countdown.
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 0.9
+Version: 1.0
 */
 
 
 /*
 Change Log
+31/12/2013 - Ajout des couleurs des liens et d'options supplémentaires
 24/12/2013 - Bugs ajout de lien dans les textes
 06/11/2013 - Bugs sur le compte à rebours
 03/10/2013 - Bugs sur les couleurs
@@ -51,35 +52,48 @@ function wpm_make_multilang() {
     load_plugin_textdomain('wp-maintenance', false, dirname( plugin_basename( __FILE__ ) ).'/languages');
 }
 
-/* Ajoute la version dnas les options */
-define('WPM_VERSION', '0.9');
+/* Ajoute la version dans les options */
+define('WPM_VERSION', '1.0');
 $option['wp_maintenance_version'] = WPM_VERSION;
-add_option('wp_maintenance_version',$option);
+if( !get_option('wp_maintenance_version') ) {
+    add_option('wp_maintenance_version', $option);
+} else if ( get_option('wp_maintenance_version') != WPM_VERSION ) {
+    update_option('wp_maintenance_version', WPM_VERSION);
+}
 
 //récupère le formulaire d'administration du plugin
 function wpm_admin_panel() {
     include("wp-maintenance-admin.php");
 }
 
+function wpm_get_roles() {
+
+    $wp_roles = new WP_Roles();
+    $roles = $wp_roles->get_names();
+    $roles = array_map( 'translate_user_role', $roles );
+
+    return $roles;
+}
+
 function wpm_add_admin() {
     $hook = add_options_page("Options pour l'affichage de la page maintenance", "WP Maintenance",  10, __FILE__, "wpm_admin_panel");
     
-    $wp_maintenanceAdminOptions = array(  
-        'active' => 0,  
+    $wp_maintenanceAdminOptions = array(
         'color_bg' => "#f1f1f1",
         'color_txt' => '#888888',
         'text_maintenance' => __('This site is down for maintenance', 'wp-maintenance'),
+        'userlimit' => 'administrator',
         'image' => WP_PLUGIN_URL.'/wp-maintenance/default.png',
-    );  
-    $getMaintenanceSettings = get_option('wp_maintenance_settings');  
-    if (!empty($getMaintenanceSettings)) {  
+    );
+    $getMaintenanceSettings = get_option('wp_maintenance_settings');
+    if (!empty($getMaintenanceSettings)) {
         foreach ($getMaintenanceSettings as $key => $option) {
             $wp_maintenanceAdminOptions[$key] = $option;
         }
-    } 
-    
-    update_option('wp_maintenance_settings', $wp_maintenanceAdminOptions);  
-    
+    }
+    update_option('wp_maintenance_settings', $wp_maintenanceAdminOptions);
+    if(!get_option('wp_maintenance_active')) { update_option('wp_maintenance_active', 0); }
+
     $wp_maintenanceStyles = '
 h1 {
     margin-left:auto;
@@ -129,6 +143,11 @@ body {
     line-height: 22px;
     text-align: center;
 }
+
+a:link {color: #_COLORTXT;text-decoration: underline;}
+a:visited {color: #_COLORTXT;text-decoration: underline;}
+a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
+
 
 #maintenance {
     text-align:center;
@@ -196,6 +215,12 @@ if (isset($_GET['page']) && $_GET['page'] == 'wp-maintenance/wp-maintenance.php'
     add_action('admin_print_scripts', 'wpm_admin_scripts');
 }
 
+function wpm_change_active($value = 0) {
+    if($value>=0) {
+        update_option('wp_maintenance_active', $value);
+    }
+}
+
 /* Mode Mainteance */
 function wpm_maintenance_mode() {
 
@@ -203,11 +228,47 @@ function wpm_maintenance_mode() {
 
     if(get_option('wp_maintenance_settings')) { extract(get_option('wp_maintenance_settings')); }
     $paramMMode = get_option('wp_maintenance_settings');
+    if(get_option('wp_maintenance_limit')) { extract(get_option('wp_maintenance_limit')); }
+    $paramLimit = get_option('wp_maintenance_limit');
+    $statusActive = get_option('wp_maintenance_active');
 
     get_currentuserinfo();
-    if(!$paramMMode['active']) { $paramMMode['active'] = 0 ;}
 
-    if ($current_user->user_level != 10 && $paramMMode['active']==1) {
+    if(!$paramMMode['active']) { $paramMMode['active'] = 0 ; }
+    if(!$statusActive) { update_option('wp_maintenance_active', $paramMMode['active']); }
+
+    /* Désactive pour les Roles */
+    if($paramLimit) {
+        foreach($paramLimit as $limitrole) {
+            if( current_user_can($limitrole) == true ) {
+                $statusActive = 0;
+            }
+        }
+    }
+    if( current_user_can('administrator') == true ) {
+        $statusActive = 0;
+    }
+
+    /* Si on désactive le mode maintenance en fin de compte à rebours */
+    if($paramMMode['disable']==1 && $statusActive == 1) {
+        //date_default_timezone_set('Europe/Madrid'); #TODO A GARDER ?
+        $dateNow = date("d-m-Y H:i:s");
+        $dateFinCpt = $paramMMode['date_cpt_jj'].'-'.$paramMMode['date_cpt_mm'].'-'.$paramMMode['date_cpt_aa'].' '.$paramMMode['date_cpt_hh'].':'.$paramMMode['date_cpt_mn'].':'.$paramMMode['date_cpt_ss'];
+        if( $dateNow > $dateFinCpt ) {
+            $ChangeStatus = wpm_change_active();
+            $statusActive = 0;
+            $paramMMode['disable'] = 0;
+
+            $wpm_options = array(
+                'active_cpt' => 0,
+                'disable' => 0,
+            );
+            update_option('wp_maintenance_settings', $wpm_options);
+        }
+    }
+    //exit($dateNow.' > '.$dateFinCpt);
+
+    if ($statusActive == 1) {
 
         $urlTpl =  get_stylesheet_directory();
 
@@ -225,10 +286,12 @@ function wpm_maintenance_mode() {
             if($paramMMode['color_bg']=="") { $paramMMode['color_bg'] = "#f1f1f1"; }
             if($paramMMode['color_txt']=="") { $paramMMode['color_txt'] = "#888888"; }
 
-            /* Paramètre par défaut */
+            /* Paramètres par défaut */
             if($paramMMode['text_maintenance']=="") { $paramMMode['text_maintenance'] = 'Ce site est en maintenance'; }
-            $img_width = 300;
-            if($paramMMode['image']=="") { $paramMMode['image'] = WP_PLUGIN_URL.'/wp-maintenance/default.png'; $img_width = 256;}
+            if($paramMMode['image']=="") { $paramMMode['image'] = WP_PLUGIN_URL.'/wp-maintenance/default.png'; }
+
+            // On récupère les tailles de l'image
+            list($width, $height, $type, $attr) = getimagesize($paramMMode['image']);
 
             /* Date compte à rebours / Convertie en format US */
             $timestamp = strtotime($paramMMode['date_cpt_aa'].'/'.$paramMMode['date_cpt_mm'].'/'.$paramMMode['date_cpt_jj'].' '.$paramMMode['date_cpt_hh'].':'.$paramMMode['date_cpt_mn']);
@@ -244,7 +307,7 @@ function wpm_maintenance_mode() {
             );
             $wpmStyle = str_replace(array_keys($styleRemplacements), array_values($styleRemplacements), get_option('wp_maintenance_style'));
             if($paramMMode['message_cpt_fin']=='') { $paramMMode['message_cpt_fin'] = '&nbsp;'; }
-            
+
             $content = '
 <!DOCTYPE html>
 <html lang="fr">
@@ -258,14 +321,13 @@ function wpm_maintenance_mode() {
     </head>
     <body>
         <div id="wrapper">';
-
-                     if($paramMMode['image']) {
-                        $content .= '
+         if($paramMMode['image']) {
+            $content .= '
             <div id="header" class="full">
-                <div id="logo"><img src="'.$paramMMode['image'].'" width="'.$img_width.'px" /></div>
+                <div id="logo"><img src="'.$paramMMode['image'].'" '.$attr.' /></div>
             </div>
-                        ';
-                     }
+            ';
+         }
          $content .= '
              <div id="content" class="full">
                  <div id="main">';
@@ -279,6 +341,8 @@ function wpm_maintenance_mode() {
                             BackColor = "'.$paramMMode['color_cpt_bg'].'";
                             FontSize = "'.$paramMMode['date_cpt_size'].'";
                             ForeColor = "'.$paramMMode['color_cpt'].'";
+                            Disable = "'.$paramMMode['disable'].'";
+                            UrlDisable = "'.get_option( 'siteurl').'";
                             CountActive = true;
                             CountStepper = -1;
                             LeadingZero = true;

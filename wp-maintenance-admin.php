@@ -5,6 +5,8 @@
 if($_POST['action'] == 'update' && $_POST["wp_maintenance_settings"]!='') {
     update_option('wp_maintenance_settings', $_POST["wp_maintenance_settings"]);
     update_option('wp_maintenance_style', $_POST["wp_maintenance_style"]);
+    update_option('wp_maintenance_limit', $_POST["wp_maintenance_limit"]);
+    update_option('wp_maintenance_active', $_POST["wp_maintenance_active"]);
     $options_saved = true;
     echo '<div id="message" class="updated fade"><p><strong>'.__('Options saved.', 'wp-maintenance').'</strong></p></div>';
 }
@@ -12,7 +14,12 @@ if($_POST['action'] == 'update' && $_POST["wp_maintenance_settings"]!='') {
 // Récupère les paramètres sauvegardés
 if(get_option('wp_maintenance_settings')) { extract(get_option('wp_maintenance_settings')); }
 $paramMMode = get_option('wp_maintenance_settings');
+// Récupère les Rôles et capabilités
+if(get_option('wp_maintenance_limit')) { extract(get_option('wp_maintenance_limit')); }
+$paramLimit = get_option('wp_maintenance_limit');
 
+// Récupère si le status est actif ou non 
+$statusActive = get_option('wp_maintenance_active');
 
 /* Feuille de style par défault */
 $wpm_style_defaut = '
@@ -64,6 +71,10 @@ body {
     line-height: 22px;
     text-align: center;
 }
+
+a:link {color: #_COLORTXT;text-decoration: underline;}
+a:visited {color: #_COLORTXT;text-decoration: underline;}
+a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
 
 #maintenance {
     text-align:center;
@@ -137,8 +148,8 @@ if($_POST['wpm_initcss']==1) {
                         <!-- CHOIX ACTIVATION MAINTENANCE -->
                         <li>
                             <h3><?php echo __('Enable maintenance mode :', 'wp-maintenance'); ?></h3>
-                            <input type= "radio" name="wp_maintenance_settings[active]" value="1" <?php if($paramMMode['active']==1) { echo ' checked'; } ?>>&nbsp;<?php echo __('Yes', 'wp-maintenance'); ?>&nbsp;&nbsp;&nbsp;
-                            <input type= "radio" name="wp_maintenance_settings[active]" value="0" <?php if($paramMMode['active']==0) { echo ' checked'; } ?>>&nbsp;<?php echo __('No', 'wp-maintenance'); ?>
+                            <input type= "radio" name="wp_maintenance_active" value="1" <?php if($statusActive==1) { echo ' checked'; } ?>>&nbsp;<?php echo __('Yes', 'wp-maintenance'); ?>&nbsp;&nbsp;&nbsp;
+                            <input type= "radio" name="wp_maintenance_active" value="0" <?php if($statusActive==0) { echo ' checked'; } ?>>&nbsp;<?php echo __('No', 'wp-maintenance'); ?>
                         </li>
                         <!-- TEXTE PERSONNEL POUR LA PAGE -->
                         <li>
@@ -215,7 +226,7 @@ if($_POST['wpm_initcss']==1) {
                                 <select name=wp_maintenance_settings[date_cpt_mm]">
                                     <?php
                                             $ctpDate = array(
-                                                '01 '=> 'jan',
+                                                '01'=> 'jan',
                                                 '02' => 'fév',
                                                 '03' => 'mar',
                                                 '04' => 'avr',
@@ -242,9 +253,10 @@ if($_POST['wpm_initcss']==1) {
                                 </select>&nbsp;
                                 <input type="text" name="wp_maintenance_settings[date_cpt_aa]" value="<?php if($paramMMode['date_cpt_aa']!='') { echo $paramMMode['date_cpt_aa']; } else { echo date('Y'); } ?>" size="4" maxlength="4" autocomplete="off" />&nbsp;à&nbsp;
                                 <input type="text" name="wp_maintenance_settings[date_cpt_hh]" value="<?php if($paramMMode['date_cpt_hh']!='') { echo $paramMMode['date_cpt_hh']; } else { echo date('H'); } ?>" size="2" maxlength="2" autocomplete="off" />&nbsp;h&nbsp;<input type="text" name="wp_maintenance_settings[date_cpt_mn]" value="<?php if($paramMMode['date_cpt_mn']!='') { echo $paramMMode['date_cpt_mn']; } else { echo date('i'); } ?>" size="2" maxlength="2" autocomplete="off" />&nbsp;min&nbsp;
-                                <input type="hidden" name=wp_maintenance_settings[date_cpt_ss]" value="<?php if($paramMMode['date_cpt_ss']!='') { echo $paramMMode['date_cpt_ss']; } else { echo date('s'); } ?>" />
+                                <input type="hidden" name=wp_maintenance_settings[date_cpt_ss]" value="00" />
                                 <br /><br />
                                 <input type= "checkbox" name="wp_maintenance_settings[active_cpt_s]" value="1" <?php if($paramMMode['active_cpt_s']==1) { echo ' checked'; } ?>>&nbsp;<?php echo __('Enable seconds ?', 'wp-maintenance'); ?><br /><br />
+                                 <input type= "checkbox" name="wp_maintenance_settings[disable]" value="1" <?php if($paramMMode['disable']==1) { echo ' checked'; } ?>>&nbsp;<?php echo __('Disable maintenance mode at the end of the countdown?', 'wp-maintenance'); ?><br /><br />
                                  <?php echo __('End message :', 'wp-maintenance'); ?><br /><TEXTAREA NAME="wp_maintenance_settings[message_cpt_fin]" COLS=70 ROWS=4><?php echo stripslashes($paramMMode['message_cpt_fin']); ?></TEXTAREA><br /><?php echo __('Font size :', 'wp-maintenance'); ?>  <select name=wp_maintenance_settings[date_cpt_size]">
                                             <?php
                                                 $ctpSize = array('18', '24', '36', '48', '52', '56', '60', '64', '68', '72', '76');
@@ -334,6 +346,23 @@ if($_POST['wpm_initcss']==1) {
                                 <input type= "radio" name="wp_maintenance_settings[pageperso]" value="1" <?php if($paramMMode['pageperso']==1) { echo ' checked'; } ?>>&nbsp;<?php echo __('Yes', 'wp-maintenance'); ?>&nbsp;&nbsp;&nbsp;
                                 <input type= "radio" name="wp_maintenance_settings[pageperso]" value="0" <?php if(!$paramMMode['pageperso'] or $paramMMode['pageperso']==0) { echo ' checked'; } ?>>&nbsp;<?php echo __('No', 'wp-maintenance'); ?>
                             </li>
+                            <li> &nbsp;</li>
+
+                            <li><h3><?php echo __('Roles and Capabilities:', 'wp-maintenance'); ?></h3>
+                                    <?php echo __('Allow the site to display these roles:', 'wp-maintenance'); ?>&nbsp;<br /><br />
+                                    <input type="hidden" name="wp_maintenance_limit[administrator]" value="administrator" />
+                                    <?php
+                                        $roles = wpm_get_roles();
+                                        foreach($roles as $role=>$name) {
+                                            $limitCheck = '';
+                                            if($paramLimit[$role]==$role) { $limitCheck = ' checked'; }
+                                            if($role=='administrator') {
+                                                $limitCheck = 'checked disabled="disabled"';
+                                            }
+                                    ?>
+                                        <input type="checkbox" name="wp_maintenance_limit[<?php echo $role; ?>]" value="<?php echo $role; ?>"<?php echo $limitCheck; ?> /><?php echo $name; ?>&nbsp;
+                                    <?php }//end foreach ?>
+                                </li>
                             <li> &nbsp;</li>
 
                             <li>

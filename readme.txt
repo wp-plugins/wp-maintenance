@@ -4,7 +4,7 @@ Donate link:
 Tags: wordpress maintenance plugin
 Requires at least: 2.0
 Tested up to: 3.8
-Stable tag: 0.9
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,10 +31,11 @@ Fichier wp-maintenance.pot disponible / maintenance.pot file available
 
 == Screenshots ==
 1. Vue générale / General view
-2. Vue par les visiteurs de votre site (mais pas les admins) / View by visitors to your site (but not the admins)
+2. Vue par les visiteurs de votre site / View by visitors to your site
 3. Sélection de couleur / Color selection
 4. Upload d'une image personnelle / Upload a personnal picture
 5. Paramètres du compte à rebours / Countdown settings
+6. Réglages divers / Various settings
 
 == Frequently Asked Questions ==
 
@@ -48,11 +49,14 @@ Oui mais merci de me soumettre les modifications souhaitées afin de mettre à j
 
 == Upgrade Notice ==
 
-= 0.9 =
+= 1.0 =
 Cette version est stable / This version is stable
 
 
 == Changelog ==
+
+= 1.0 =
+* Ajout couleur sur les liens, option rajoutée sur le compte à rebours et l'affichage du site aux rôles de votre choix / Adding color on the links, added option on the countdown and viewing the site of your choice roles
 
 = 0.9 =
 * Bugs ajout lien dans textes / Bug add link in texts
