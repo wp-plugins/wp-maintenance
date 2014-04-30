@@ -6,12 +6,13 @@ Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture and countdown.
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 1.0
+Version: 1.1
 */
 
 
 /*
 Change Log
+30/04/2014 - Ajout code analytics, icones réseaux sociaux, newletter, image de fond...
 31/12/2013 - Ajout des couleurs des liens et d'options supplémentaires
 24/12/2013 - Bugs ajout de lien dans les textes
 06/11/2013 - Bugs sur le compte à rebours
@@ -53,7 +54,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '1.0');
+define('WPM_VERSION', '1.1');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -185,6 +186,32 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
+.wpm_horizontal li {
+    display: inline-block;
+    list-style: none;
+    margin:5px;
+    opacity:0.6;
+}
+.wpm_horizontal li:hover {
+    opacity:1;
+}
+
+@media screen and (min-width: 200px) and (max-width: 480px) {
+    .full {
+        max-width:300px;
+    }
+   #header {
+        padding: 0;
+   }
+    #main {
+        padding: 0;
+    }
+}
+@media screen and (min-width: 480px) and (max-width: 767px) {
+    .full {
+        max-width:342px;
+    }
+}
     ';
     update_option('wp_maintenance_style', $wp_maintenanceStyles);
 }
@@ -221,13 +248,92 @@ function wpm_change_active($value = 0) {
     }
 }
 
-/* Mode Mainteance */
+function wpm_array_value_count ($array) {
+    $count = 0;
+   
+    foreach ($array as $key => $value)
+    {
+            if($value) { $count++; }
+    }
+   
+    return $count;
+} 
+
+function wpm_analytics_shortcode( $atts ) {
+
+    if(get_option('wp_maintenance_settings')) { extract(get_option('wp_maintenance_settings')); }
+    $paramMMode = get_option('wp_maintenance_settings');
+    
+	// Attributes
+	extract( shortcode_atts(
+		array(
+			'enable' => 0,
+            'code' => $paramMMode['code_analytics'],
+            'domain' => ''.$_SERVER['SERVER_NAME'].''
+		), $atts )
+	);
+
+    if($enable==1 && $code!='') {
+        return "<script>
+                  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                  ga('create', '".$code."', '".$domain."');
+                  ga('send', 'pageview');
+
+                </script>";
+    } else {
+        // Code
+        return '';
+    }
+}
+add_shortcode( 'wpm_analytics', 'wpm_analytics_shortcode' );
+
+function wpm_social_shortcode( $atts ) {
+
+    if(get_option('wp_maintenance_social')) { extract(get_option('wp_maintenance_social')); }
+    $paramSocial = get_option('wp_maintenance_social');
+    $paramSocialOption = get_option('wp_maintenance_social_options');
+    $countSocial = wpm_array_value_count($paramSocial);
+        
+	// Attributes
+	extract( shortcode_atts(
+		array(
+			'size' => 48,
+            'enable' => 0
+		), $atts )
+	);
+    if($paramSocialOption['theme']!='') {
+        $srcIcon = get_stylesheet_directory_uri().'/'.$paramSocialOption['theme'];
+    } else {
+        $srcIcon = WP_CONTENT_URL.'/plugins/wp-maintenance/socialicons/'.$paramSocialOption['size'].'x'.$paramSocialOption['size'].'/';
+    }
+    if($paramSocialOption['enable']==1 && $countSocial>=1) {
+         $content .= '<div id="wpm-social-footer" class="wpm_social"><ul class="wpm_horizontal">';
+            foreach($paramSocial as $socialName=>$socialUrl) {
+                if($socialUrl!='') {
+                    $content .= '<li><a href="'.$socialUrl.'" target="_blank"><img src="'.$srcIcon.$socialName.'.png" alt="'.$paramSocialOption['texte'].' '.ucfirst($socialName).'" title="'.$paramSocialOption['texte'].' '.ucfirst($socialName).'" /></a></li>';
+                }
+            }
+         $content .='</ul></div>';
+        return $content;
+     } else {
+        // Code
+        return '';
+    }
+}
+add_shortcode( 'wpm_social', 'wpm_social_shortcode' );
+
+/* Mode Maintenance */
 function wpm_maintenance_mode() {
 
     global $current_user;
 
     if(get_option('wp_maintenance_settings')) { extract(get_option('wp_maintenance_settings')); }
     $paramMMode = get_option('wp_maintenance_settings');
+    
     if(get_option('wp_maintenance_limit')) { extract(get_option('wp_maintenance_limit')); }
     $paramLimit = get_option('wp_maintenance_limit');
     $statusActive = get_option('wp_maintenance_active');
@@ -308,6 +414,15 @@ function wpm_maintenance_mode() {
             $wpmStyle = str_replace(array_keys($styleRemplacements), array_values($styleRemplacements), get_option('wp_maintenance_style'));
             if($paramMMode['message_cpt_fin']=='') { $paramMMode['message_cpt_fin'] = '&nbsp;'; }
 
+            if($paramMMode['b_image'] && $paramMMode['b_enable_image']==1) {
+                if($paramMMode['b_repeat_image']=='') { $paramMMode['b_repeat_image'] = 'repeat'; }
+            $addBImage = '
+            body {
+                background:url('.$paramMMode['b_image'].') '.$paramMMode['b_repeat_image'].';
+                background-attachment:fixed;
+            }';
+            }
+            
             $content = '
 <!DOCTYPE html>
 <html lang="fr">
@@ -317,7 +432,25 @@ function wpm_maintenance_mode() {
         <meta name="description" content="'.__('This site is down for maintenance', 'wp-maintenance').'" />
         <style type="text/css">
             '.$wpmStyle.'
+            '.$addBImage.'
+.wpm_social {
+    padding: 0 45px;
+    text-align: center;
+}
+.wpm_social_icon {
+    float:left;
+    width:'.$paramSocialOption['size'].'px;
+    margin:0px 5px auto;
+}
+.wpm_social ul {
+    /*float: left;*/
+    margin: 10px 0;
+    max-width: 100%;
+    padding: 0;
+    text-align: center;
+}
         </style>
+        '.do_shortcode('[wpm_analytics enable="'.$paramMMode['analytics'].'"]').'
     </head>
     <body>
         <div id="wrapper">';
@@ -358,8 +491,14 @@ function wpm_maintenance_mode() {
                         <script language="JavaScript" src="'.WP_PLUGIN_URL.'/wp-maintenance/wpm-cpt-script.js"></script>
                     </div>';
                         }
+                    if($paramMMode['newletter']==1 && $paramMMode['code_newletter']!='') {
+                        $content .= '<div class="wpm_newletter">'.do_shortcode(stripslashes($paramMMode['code_newletter'])).'</div>';
+                    }
+                    $content .= do_shortcode('[wpm_social]');
+            
+                     
                      $content .= '
-                </div><!-- div main -->
+                     </div><!-- div main -->
             </div><!-- div content -->
         </div><!-- div wrapper -->
     </body>

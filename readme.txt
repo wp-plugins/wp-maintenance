@@ -2,9 +2,9 @@
 Contributors: Florent73
 Donate link: 
 Tags: wordpress maintenance plugin
-Requires at least: 2.0
-Tested up to: 3.8
-Stable tag: 1.0
+Requires at least: 3.0
+Tested up to: 3.9
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,11 +49,14 @@ Oui mais merci de me soumettre les modifications souhaitées afin de mettre à j
 
 == Upgrade Notice ==
 
-= 1.0 =
+= 1.1 =
 Cette version est stable / This version is stable
 
 
 == Changelog ==
+
+= 1.1 =
+* Ajout icones réseaux sociaux, code analytics, shorcodes newletter et image de fond / Adding icons social networks, analytics code, shorcodes newletter and background picture
 
 = 1.0 =
 * Ajout couleur sur les liens, option rajoutée sur le compte à rebours et l'affichage du site aux rôles de votre choix / Adding color on the links, added option on the countdown and viewing the site of your choice roles
