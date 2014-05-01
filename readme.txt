@@ -21,7 +21,7 @@ Le plugin WP Maintenance vous permet de mettre votre site en attente le temps po
 - un compte à rebours
 - Prêt pour Google Analytics
 - Icônes des réseaux sociaux
-- Insert for shorcode (Newletter or Contact form)
+- Encart pour un shorcode (newletter ou contact)
 
 The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture and countdown with:
 
@@ -31,7 +31,7 @@ The WP Maintenance plugin allows you to put your website on the waiting time for
 - Countdown
 - Google Analytics ready
 - Social Networks ready
-- shorcode (newletter ou contact)
+- Insert for shorcode (Newletter or Contact form)
 
 Langues disponibles / Languages :
 
