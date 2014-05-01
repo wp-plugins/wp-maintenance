@@ -6,12 +6,13 @@ Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture and countdown.
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 1.1
+Version: 1.2
 */
 
 
 /*
 Change Log
+01/05/2014 - Modifs countdown et icones réseaux sociaux..
 30/04/2014 - Ajout code analytics, icones réseaux sociaux, newletter, image de fond...
 31/12/2013 - Ajout des couleurs des liens et d'options supplémentaires
 24/12/2013 - Bugs ajout de lien dans les textes
@@ -54,7 +55,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '1.1');
+define('WPM_VERSION', '1.2');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -82,6 +83,8 @@ function wpm_add_admin() {
     $wp_maintenanceAdminOptions = array(
         'color_bg' => "#f1f1f1",
         'color_txt' => '#888888',
+        'color_bg_bottom' => '#333333',
+        'color_text_bottom' => '#FFFFFF',
         'text_maintenance' => __('This site is down for maintenance', 'wp-maintenance'),
         'userlimit' => 'administrator',
         'image' => WP_PLUGIN_URL.'/wp-maintenance/default.png',
@@ -109,10 +112,12 @@ body {
     background: none repeat scroll 0 0 #_COLORBG;
     color: #_COLORTXT;
     font: 12px/1.5em Arial,Helvetica,Sans-serif;
+    padding:0;
+    margin:0;
 }
 #header {
     clear: both;
-    padding: 20px 0 10px;
+    padding: 5px 0 10px;
     position: relative;
 }
 .full {
@@ -136,7 +141,6 @@ body {
 }
 #main #intro h3 {
     font-size: 40px;
-    text-shadow: 0 10px 10px #FFFFFF;
 }
 #main #intro p {
     font-family: Muli,sans-serif;
@@ -164,7 +168,6 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     min-width: 160px;
     min-height: 60px;
     padding: 30px 20px 5px 20px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     text-transform: uppercase;
     text-align:center;
 }
@@ -174,16 +177,14 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     display: block;
     font-size: #_DATESIZE;
     height: 40px;
-    line-height: 38px;
-    text-align: right;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    line-height: 18px;
+    text-align: center;
     float:left;
 }
 #cptR-days-span, #cptR-hours-span, #cptR-minutes-span, #cptR-seconds-span {
     color: #_COLORCPT;
     font-size: 10px;
     padding: 25px 5px 0 2px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .wpm_horizontal li {
@@ -195,18 +196,55 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
 .wpm_horizontal li:hover {
     opacity:1;
 }
-
+#wpm_footer {
+    width: 100%;
+    clear: both;
+    height: 45px;
+    text-align:center;
+    background-color: #_COLOR_BG_BT;
+    color:#_COLOR_TXT_BT;
+    padding-top:10px;
+}
+.wpm_copyright {
+    color:#_COLOR_TXT_BT;
+    font-size: 12px;
+}
+.wpm_copyright a, a:hover, a:visited {
+    color:#_COLOR_TXT_BT;
+    text-decoration:none;
+    font-size: 12px;
+}
+.wpm_social {
+    padding: 0 45px;
+    text-align: center;
+}
+.wpm_newletter {
+    margin:15px 10px;
+    text-align:center;
+}
 @media screen and (min-width: 200px) and (max-width: 480px) {
     .full {
         max-width:300px;
     }
-   #header {
+    #header {
         padding: 0;
-   }
+    }
     #main {
         padding: 0;
     }
-}
+    .wpm_social {
+        padding: 0 15px;
+    }
+    .cptR-rec_countdown {
+        padding:0;
+    }
+    #main .block h3 {
+        line-height: 0px;
+    }
+    #main .block {
+        margin-bottom: 0;
+        }
+}  
 @media screen and (min-width: 480px) and (max-width: 767px) {
     .full {
         max-width:342px;
@@ -343,6 +381,8 @@ function wpm_maintenance_mode() {
     if(!$paramMMode['active']) { $paramMMode['active'] = 0 ; }
     if(!$statusActive) { update_option('wp_maintenance_active', $paramMMode['active']); }
 
+    $paramSocialOption = get_option('wp_maintenance_social_options');
+    
     /* Désactive pour les Roles */
     if($paramLimit) {
         foreach($paramLimit as $limitrole) {
@@ -381,7 +421,8 @@ function wpm_maintenance_mode() {
         if($paramMMode['pageperso']==1) {
 
             $urlTpl =  get_stylesheet_directory();
-            $content = file_get_contents( $urlTpl. '/maintenance.php' );
+            //$content = file_get_contents( $urlTpl. '/maintenance.php' );
+            $content = file_get_contents( WP_PLUGIN_URL.'/wp-maintenance/theme/launcher2/' );
 
         } else {
 
@@ -409,19 +450,33 @@ function wpm_maintenance_mode() {
                 "#_COLORBG" => $paramMMode['color_bg'],
                 "#_COLORCPTBG" => $paramMMode['color_cpt_bg'],
                 "#_DATESIZE" => $paramMMode['date_cpt_size'],
-                "#_COLORCPT" => $paramMMode['color_cpt']
+                "#_COLORCPT" => $paramMMode['color_cpt'],
+                "#_COLOR_BG_BT" => $paramMMode['color_bg_bottom'],
+                "#_COLOR_TXT_BT" => $paramMMode['color_text_bottom']
             );
             $wpmStyle = str_replace(array_keys($styleRemplacements), array_values($styleRemplacements), get_option('wp_maintenance_style'));
             if($paramMMode['message_cpt_fin']=='') { $paramMMode['message_cpt_fin'] = '&nbsp;'; }
 
             if($paramMMode['b_image'] && $paramMMode['b_enable_image']==1) {
                 if($paramMMode['b_repeat_image']=='') { $paramMMode['b_repeat_image'] = 'repeat'; }
+                if($paramMMode['b_fixed_image']=='') { $paramMMode['b_fixed_image'] = 'fixed'; }
             $addBImage = '
             body {
                 background:url('.$paramMMode['b_image'].') '.$paramMMode['b_repeat_image'].';
-                background-attachment:fixed;
+                background-attachment:'.$paramMMode['b_fixed_image'].';
+                padding:0;
+                margin:0;
             }';
             }
+            if($paramMMode['b_pattern']>0 && $paramMMode['b_enable_image']==1) {
+            $addBImage = '
+            body {
+                background:url('.WP_PLUGIN_URL.'/wp-maintenance/images/pattern'.$paramMMode['b_pattern'].'.png) '.$paramMMode['b_repeat_image'].';
+                    padding:0;
+                    margin:0;
+            }';
+            }
+            if($paramSocialOption['align']=='') { $paramSocialOption['align'] = 'center'; }
             
             $content = '
 <!DOCTYPE html>
@@ -433,10 +488,6 @@ function wpm_maintenance_mode() {
         <style type="text/css">
             '.$wpmStyle.'
             '.$addBImage.'
-.wpm_social {
-    padding: 0 45px;
-    text-align: center;
-}
 .wpm_social_icon {
     float:left;
     width:'.$paramSocialOption['size'].'px;
@@ -447,13 +498,19 @@ function wpm_maintenance_mode() {
     margin: 10px 0;
     max-width: 100%;
     padding: 0;
-    text-align: center;
+    text-align: '.$paramSocialOption['align'].';
+}
+#cptR-day, #cptR-hours, #cptR-minutes, #cptR-seconds {
+    width:'.($paramMMode['date_cpt_size']*1.8).'px;
 }
         </style>
         '.do_shortcode('[wpm_analytics enable="'.$paramMMode['analytics'].'"]').'
     </head>
-    <body>
-        <div id="wrapper">';
+    <body>';
+        if($paramSocialOption['position']=='top') {
+            $content .= do_shortcode('[wpm_social]');
+        }
+        $content .= '<div id="wrapper">';
          if($paramMMode['image']) {
             $content .= '
             <div id="header" class="full">
@@ -480,9 +537,9 @@ function wpm_maintenance_mode() {
                             CountStepper = -1;
                             LeadingZero = true;
                      ';
-                     $content .= "   DisplayFormat = '<div id=\"cptR-day\">%%D%%<span id=\"cptR-days-span\">".__('Days', 'wp-maintenance')."</span></div><div id=\"cptR-hours\">%%H%%<span id=\"cptR-hours-span\">".__('Hours', 'wp-maintenance')."</span></div><div id=\"cptR-minutes\">%%M%%<span id=\"cptR-minutes-span\">".__('Minutes', 'wp-maintenance')."</span></div>";
+                     $content .= "   DisplayFormat = '<div id=\"cptR-day\">%%D%%<br /><span id=\"cptR-days-span\">".__('Days', 'wp-maintenance')."</span></div><div id=\"cptR-hours\">%%H%%<br /><span id=\"cptR-hours-span\">".__('Hours', 'wp-maintenance')."</span></div><div id=\"cptR-minutes\">%%M%%<br /><span id=\"cptR-minutes-span\">".__('Minutes', 'wp-maintenance')."</span></div>";
                      if($paramMMode['active_cpt_s']==1) {
-                        $content .= '<div id="cptR-seconds">%%S%%<span id="cptR-seconds-span">'.__('Seconds', 'wp-maintenance').'</span></div>';
+                        $content .= '<div id="cptR-seconds">%%S%%<br /><span id="cptR-seconds-span">'.__('Seconds', 'wp-maintenance').'</span></div>';
                      }
                      $content .= "';
                             FinishMessage = '".stripslashes($paramMMode['message_cpt_fin'])."';
@@ -494,13 +551,16 @@ function wpm_maintenance_mode() {
                     if($paramMMode['newletter']==1 && $paramMMode['code_newletter']!='') {
                         $content .= '<div class="wpm_newletter">'.do_shortcode(stripslashes($paramMMode['code_newletter'])).'</div>';
                     }
-                    $content .= do_shortcode('[wpm_social]');
-            
+        
                      
                      $content .= '
                      </div><!-- div main -->
             </div><!-- div content -->
-        </div><!-- div wrapper -->
+        </div><!-- div wrapper -->';
+                    if($paramSocialOption['position']=='bottom') {
+                        $content .= do_shortcode('[wpm_social]');
+                    }
+        $content .= '<div id="wpm_footer"><p class="wpm_copyright">'.stripslashes($paramMMode['text_bt_maintenance']).'</p></div>
     </body>
 </html>';
         }
