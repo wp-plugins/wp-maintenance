@@ -139,6 +139,8 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     color:#_COLOR_TXT_BT;
     padding-top:10px;
     font-size: 12px;
+    position:absolute;
+    bottom:0;
 }
 .wpm_copyright {
     color:#_COLOR_TXT_BT;

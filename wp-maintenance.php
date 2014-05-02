@@ -204,6 +204,8 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     background-color: #_COLOR_BG_BT;
     color:#_COLOR_TXT_BT;
     padding-top:10px;
+    position:absolute;
+    bottom:0;
 }
 .wpm_copyright {
     color:#_COLOR_TXT_BT;
@@ -560,7 +562,10 @@ function wpm_maintenance_mode() {
                     if($paramSocialOption['position']=='bottom') {
                         $content .= do_shortcode('[wpm_social]');
                     }
-        $content .= '<div id="wpm_footer"><p class="wpm_copyright">'.stripslashes($paramMMode['text_bt_maintenance']).'</p></div>
+                    if($paramMMode['text_bt_maintenance']!='') {
+                        $content .= '<div id="wpm_footer"><p class="wpm_copyright">'.stripslashes($paramMMode['text_bt_maintenance']).'</p></div>';
+                    }
+            $content .='
     </body>
 </html>';
         }
