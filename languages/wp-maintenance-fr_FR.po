@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Maintenance\n"
-"POT-Creation-Date: 2014-05-01 19:11+0100\n"
-"PO-Revision-Date: 2014-05-02 09:09+0100\n"
+"POT-Creation-Date: 2014-05-02 09:23+0100\n"
+"PO-Revision-Date: 2014-05-02 09:23+0100\n"
 "Last-Translator: Florent <contact@restezconnectes.fr>\n"
 "Language-Team: Florent Maillefaud <contact@restezconnectes.fr>\n"
 "Language: fr\n"
@@ -14,271 +14,331 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: c:/wamp/www/test.local.sites.fr/www/wp-content/"
-"plugins/wp-maintenance\n"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:16
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:16
 msgid "Options saved."
 msgstr "Options sauvegardées."
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:222
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:222
 msgid "General"
 msgstr "Général"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:223
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:223
 msgid "Colors"
 msgstr "Couleurs"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:224
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:224
 msgid "Picture"
 msgstr "Image"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:225
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:225
 msgid "CountDown"
 msgstr "Compte à rebours"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:226
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:226
 msgid "CSS Style"
 msgstr "Style CSS"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:227
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance.php:46
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:227
+#: Wordpress\wp-maintenance\trunk/wp-maintenance.php:46
 msgid "Settings"
 msgstr "Réglages"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:228
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:228
 msgid "About"
 msgstr "A propos"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:242
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:242
 msgid "Enable maintenance mode:"
 msgstr "Activer le mode maintenance :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:243
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:257
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:267
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:323
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:436
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:558
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:243
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:257
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:267
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:323
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:436
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:558
 msgid "Yes"
 msgstr "Oui"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:244
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:559
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:244
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:559
 msgid "No"
 msgstr "Non"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:248
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:248
 msgid "Title and text for the maintenance page:"
 msgstr "Titre et Texte de la page maintenance :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:249
-msgid "Title :"
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:249
+msgid "Title:"
 msgstr "Titre :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:250
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:252
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:250
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:252
 msgid "Text:"
 msgstr "Texte :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:251
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:251
 msgid "Text in the bottom of maintenance page:"
-msgstr "Titre et Texte du bas de page :"
+msgstr "Texte du bas de page :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:256
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:256
 msgid "Enable Google Analytics:"
 msgstr "Activer Google Analytics :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:258
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:258
 msgid "Enter your Google analytics tracking ID here:"
 msgstr "Enter votre ID de suivi de Google Analytics ici :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:260
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:260
 msgid "Enter your domain URL:"
 msgstr "Entrer votre domain :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:266
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:266
 msgid "Enable Social Networks:"
 msgstr "Activer les icônes des réseaux sociaux :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:268
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:268
 msgid "Enter text for the title icons:"
 msgstr "Entrez un texte pour la balise title des icônes  :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:269
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:269
 msgid "Follow me on"
 msgstr "Suivez-moi sur"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:271
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:271
 msgid "Drad and drop the lines to put in the order you want:"
 msgstr ""
 "Cliquez et glisser les lignes pour mettre dans l'ordre que vous souhaitez :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:291
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:291
 msgid "Choose icons size:"
 msgstr "Choisissez la taille des icônes :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:302
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:302
 msgid "Position:"
 msgstr "Position :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:304
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:304
 msgid "Top"
 msgstr "Haut"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:305
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:305
 msgid "Bottom"
 msgstr "Bas"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:309
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:309
 msgid "Align:"
 msgstr "Alignement :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:311
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:311
 msgid "Left"
 msgstr "Gauche"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:312
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:312
 msgid "Center"
 msgstr "Centre"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:313
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:313
 msgid "Right"
 msgstr "Droite"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:316
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:316
 msgid "You have your own icons? Enter the folder name of your theme here:"
 msgstr ""
 "Vous avez vos propres icônes ? Entrez le nom du dossier de votre thème ici :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:322
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:322
 msgid "Enable Newletter:"
 msgstr "Activer l'encart de newletter :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:324
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:324
 msgid "Enter your newletter shortcode here:"
 msgstr "Entrez le Shortcode de la newletter ici :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:330
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:360
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:422
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:488
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:544
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:582
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:330
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:360
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:422
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:488
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:544
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:582
 msgid "Save this settings"
 msgstr "Sauvegarder ces paramètres"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:343
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:343
 msgid "Choice texts colors:"
 msgstr "Choix des couleurs des textes :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:345
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:345
 msgid "Background page color:"
 msgstr "Couleur du fond de page :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:346
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:346
 msgid "Text color:"
 msgstr "Couleur du texte :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:347
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:347
 msgid "Choice countdown colors:"
 msgstr "Choix des couleurs du compte à rebours :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:348
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:348
 msgid "Countdown text color:"
 msgstr "Couleur du texte du compteur :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:350
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:350
 msgid "Countdown background color:"
 msgstr "Couleur du fond du compteur :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:352
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:352
 msgid "Choice texts bottom colors:"
 msgstr "Choix des couleurs du bas de page :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:354
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:354
 msgid "Bottom color:"
 msgstr "Couleur du fond :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:355
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:355
 msgid "Text bottom color:"
 msgstr "Couleur du texte :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:372
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:372
 msgid "Upload a picture"
 msgstr "Uploader une image"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:374
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:374
 msgid "You use this picture:"
 msgstr "Image actuelle : "
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:376
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:392
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:376
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:392
 msgid "Select or Upload your picture"
 msgstr "Sélectionnez / Uploader votre image"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:377
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:393
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:377
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:393
 msgid "Enter a URL or upload an image."
 msgstr "Entrez une url ou uploader une image."
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:382
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:382
 msgid "Upload a background picture"
 msgstr "Uploader une image de fond"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:383
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:383
 msgid "Enable image background"
 msgstr "Activer l'image de fond"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:385
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:385
 msgid "You use this background picture:"
 msgstr "Image de fond actuelle : "
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:389
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:389
 msgid "You use this pattern:"
 msgstr "Vous utilisez ce pattern : "
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:394
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:394
 msgid "Or choose a pattern:"
 msgstr "Ou choisissez un pattern de fond :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:410
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:410
 msgid "Background picture options"
 msgstr "Options de l'image de fond"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:417
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:417
 msgid "Fixed"
 msgstr "Fixe"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:435
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:435
 msgid "Enable a countdown ?"
 msgstr "Activer le compte à rebours ?"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:437
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:437
 msgid "Enter the launch date"
 msgstr "Entrez la date de lancement"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:470
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:470
 msgid "Enable seconds ?"
 msgstr "Afficher les secondes ?"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:471
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:471
 msgid "Disable maintenance mode at the end of the countdown?"
 msgstr "Désactiver le mode maintenance à la fin du compte à rebours ?"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:472
-msgid "End message :"
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:472
+msgid "End message:"
 msgstr "Message de fin :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:472
-msgid "Font size :"
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:472
+msgid "Font size:"
 msgstr "Taille de la police :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:500
-msgid "CSS style sheet code :"
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:500
+msgid "CSS style sheet code:"
 msgstr "Code style CSS :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:501
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:501
 msgid ""
 "Edit the CSS sheet of your maintenance page here. Click \"Reset\" and \"Save"
 "\" to retrieve the default style sheet."
@@ -286,66 +346,80 @@ msgstr ""
 "Editer le code CSS de votre page de maintenance ici. Cliquez sur "
 "\"Réinitialiser\" et \"Sauvegarder\" pour remettre le style par défaut."
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:509
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:509
 msgid "Markers for colors"
 msgstr "Marqueurs pour les couleurs"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:514
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:514
 msgid "Use this code for text color"
 msgstr "Utiliser ce code pour la couleur du texte"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:518
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:518
 msgid "Use this code for background text color"
 msgstr "Utiliser ce code pour la couleur de fond du texte"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:522
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:522
 msgid "Use this code for background color countdown"
 msgstr "Utiliser ce code pour la couleur du fond du compte à rebours"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:526
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:526
 msgid "Use this code for size countdown"
 msgstr "Utiliser ce code pour la taille du compte à rebours"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:530
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:530
 msgid "Use this code for countdown color"
 msgstr "Utiliser ce code pour la couleur du texte du compte à rebours"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:539
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:539
 msgid "Reset default CSS stylesheet ?"
 msgstr "Réinitialiser la feuille de style ?"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:556
-msgid "Theme maintenance page :"
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:556
+msgid "Theme maintenance page:"
 msgstr "Page maintenance du thème :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:557
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:557
 msgid ""
 "If you would use your maintenance.php page in your theme folder, click Yes."
 msgstr ""
 "Si vous souhaitez utiliser votre page maintenance.php dans le dossier de "
 "votre thème, cliquez sur Oui."
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:560
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:560
 msgid "You can use this shortcode to include Google Analytics code:"
 msgstr ""
 "Vous pouvez utiliser ce Shortcode pour include le code Google Analytics sur "
 "votre page :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:560
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:560
 msgid "You can use this shortcode to include Social Networks icons:"
 msgstr ""
 "Vous pouvez utiliser ce Shortcode pour include les icons des réseaux sociaux "
 "sur votre page :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:564
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:564
 msgid "Roles and Capabilities:"
 msgstr "Rôles et capacités :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:565
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:565
 msgid "Allow the site to display these roles:"
 msgstr "Autoriser l'affichage du site à ces rôles :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:598
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:598
 msgid ""
 "This plugin has been developed for you for free by <a href=\"http://www."
 "restezconnectes.fr\" target=\"_blank\">Florent Maillefaud</ a>. It is "
@@ -360,30 +434,35 @@ msgstr ""
 "retours sur vos éventuelles modifications afin d'améliorer ce plugin pour "
 "tous."
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:603
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance-admin.php:603
 msgid ""
 "If you want Donate (French Paypal) for my current and future developments:"
 msgstr ""
 "Si vous souhaitez me soutenir pour mes développements actuels et futurs :"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance.php:88
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance.php:487
+#: C:\wamp\www\www\Plugin Wordpress\wp-maintenance\trunk/wp-maintenance.php:88
+#: Wordpress\wp-maintenance\trunk/wp-maintenance.php:487
 msgid "This site is down for maintenance"
 msgstr "Ce site est en maintenance"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance.php:540
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance.php:540
 msgid "Days"
 msgstr "Jours"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance.php:540
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance.php:540
 msgid "Hours"
 msgstr "Heures"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance.php:540
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance.php:540
 msgid "Minutes"
 msgstr "Minutes"
 
-#: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance.php:542
+#: C:\wamp\www\www\Plugin
+#: Wordpress\wp-maintenance\trunk/wp-maintenance.php:542
 msgid "Seconds"
 msgstr "Secondes"
 
