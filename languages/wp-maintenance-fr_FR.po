@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Maintenance\n"
 "POT-Creation-Date: 2014-05-01 19:11+0100\n"
-"PO-Revision-Date: 2014-05-01 19:11+0100\n"
+"PO-Revision-Date: 2014-05-02 09:09+0100\n"
 "Last-Translator: Florent <contact@restezconnectes.fr>\n"
 "Language-Team: Florent Maillefaud <contact@restezconnectes.fr>\n"
 "Language: fr\n"
@@ -83,7 +83,7 @@ msgstr "Texte :"
 
 #: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:251
 msgid "Text in the bottom of maintenance page:"
-msgstr "Titre et Texte de la page maintenance :"
+msgstr "Titre et Texte du bas de page :"
 
 #: c:/wamp/www/test.local.sites.fr/www/wp-content/plugins/wp-maintenance/wp-maintenance-admin.php:256
 msgid "Enable Google Analytics:"
