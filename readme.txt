@@ -4,7 +4,7 @@ Donate link:
 Tags: wordpress maintenance plugin
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,11 +65,14 @@ Oui mais merci de me soumettre les modifications souhaitées afin de mettre à j
 
 == Upgrade Notice ==
 
-= 1.2 =
+= 1.3 =
 Cette version est stable / This version is stable
 
 
 == Changelog ==
+
+= 1.3 =
+* Correction traduction et fichier désinstallation / Resolved translation bug and uninstall file
 
 = 1.2 =
 * Ajout positionnement icônes, barre footer / Adding icons position, footer bar

@@ -246,7 +246,7 @@ if($_POST['wpm_initcss']==1) {
                         <!-- TEXTE PERSONNEL POUR LA PAGE -->
                         <li>
                             <h3><?php _e('Title and text for the maintenance page:', 'wp-maintenance'); ?></h3>
-                            <?php _e('Title :', 'wp-maintenance'); ?><br /><input type="text" name="wp_maintenance_settings[titre_maintenance]" value="<?php echo stripslashes($paramMMode['titre_maintenance']); ?>" /><br />
+                            <?php _e('Title:', 'wp-maintenance'); ?><br /><input type="text" name="wp_maintenance_settings[titre_maintenance]" value="<?php echo stripslashes($paramMMode['titre_maintenance']); ?>" /><br />
                             <?php _e('Text:', 'wp-maintenance'); ?><br /><TEXTAREA NAME="wp_maintenance_settings[text_maintenance]" COLS=70 ROWS=4><?php echo stripslashes($paramMMode['text_maintenance']); ?></TEXTAREA>
                             <h3><?php _e('Text in the bottom of maintenance page:', 'wp-maintenance'); ?></h3>
                             <?php _e('Text:', 'wp-maintenance'); ?><br /><TEXTAREA NAME="wp_maintenance_settings[text_bt_maintenance]" COLS=70 ROWS=4><?php echo stripslashes($paramMMode['text_bt_maintenance']); ?></TEXTAREA>
@@ -381,7 +381,7 @@ if($_POST['wpm_initcss']==1) {
                              <!-- UPLOADER UNE IMAGE -->
                             <li><h3><?php _e('Upload a background picture', 'wp-maintenance'); ?></h3>
                                 <input type= "checkbox" name="wp_maintenance_settings[b_enable_image]" value="1" <?php if($paramMMode['b_enable_image']==1) { echo ' checked'; } ?>> <?php _e('Enable image background', 'wp-maintenance'); ?><br /><br />
-                            <?php if($paramMMode['image'] && (!$paramMMode['b_pattern'] or $paramMMode['b_pattern']==0) ) { ?>
+                            <?php if($paramMMode['b_image'] && (!$paramMMode['b_pattern'] or $paramMMode['b_pattern']==0) ) { ?>
                                 <?php _e('You use this background picture:', 'wp-maintenance'); ?><br />
                                 <img src="<?php echo $paramMMode['b_image']; ?>" width="300" style="border:1px solid #333;padding:3px;background: url('<?php echo $paramMMode['b_image']; ?>');" /><br />
                             <?php } ?>
@@ -469,7 +469,7 @@ if($_POST['wpm_initcss']==1) {
                                 <br /><br />
                                 <input type= "checkbox" name="wp_maintenance_settings[active_cpt_s]" value="1" <?php if($paramMMode['active_cpt_s']==1) { echo ' checked'; } ?>>&nbsp;<?php _e('Enable seconds ?', 'wp-maintenance'); ?><br /><br />
                                  <input type= "checkbox" name="wp_maintenance_settings[disable]" value="1" <?php if($paramMMode['disable']==1) { echo ' checked'; } ?>>&nbsp;<?php _e('Disable maintenance mode at the end of the countdown?', 'wp-maintenance'); ?><br /><br />
-                                 <?php _e('End message :', 'wp-maintenance'); ?><br /><TEXTAREA NAME="wp_maintenance_settings[message_cpt_fin]" COLS=70 ROWS=4><?php echo stripslashes($paramMMode['message_cpt_fin']); ?></TEXTAREA><br /><?php _e('Font size :', 'wp-maintenance'); ?>  <select name="wp_maintenance_settings[date_cpt_size]">
+                                 <?php _e('End message:', 'wp-maintenance'); ?><br /><TEXTAREA NAME="wp_maintenance_settings[message_cpt_fin]" COLS=70 ROWS=4><?php echo stripslashes($paramMMode['message_cpt_fin']); ?></TEXTAREA><br /><?php _e('Font size:', 'wp-maintenance'); ?>  <select name="wp_maintenance_settings[date_cpt_size]">
                                             <?php
                                                 $ctpSize = array('18', '24', '36', '48', '52', '56', '60', '64', '68', '72', '76');
                                                 foreach($ctpSize as $c) {
@@ -497,7 +497,7 @@ if($_POST['wpm_initcss']==1) {
                  <div id="wpm-opt-styles"  >
                          <ul>
                             <!-- UTILISER UNE FEUILLE DE STYLE PERSO -->
-                            <li><h3><?php _e('CSS style sheet code :', 'wp-maintenance'); ?></h3>
+                            <li><h3><?php _e('CSS style sheet code:', 'wp-maintenance'); ?></h3>
                                 <?php _e('Edit the CSS sheet of your maintenance page here. Click "Reset" and "Save" to retrieve the default style sheet.', 'wp-maintenance'); ?><br /><br />
                                 <div style="float:left;width:55%;margin-right:15px;">
                                     <TEXTAREA NAME="wp_maintenance_style" COLS=70 ROWS=24 style="width:100%;"><?php echo stripslashes(trim(get_option('wp_maintenance_style'))); ?></TEXTAREA>
@@ -553,7 +553,7 @@ if($_POST['wpm_initcss']==1) {
                  <div id="wpm-opt-options"  >
                          <ul>
                             <!-- UTILISER UNE PAGE MAINTENANCE.PHP -->
-                            <li><h3><?php _e('Theme maintenance page :', 'wp-maintenance'); ?></h3>
+                            <li><h3><?php _e('Theme maintenance page:', 'wp-maintenance'); ?></h3>
                                 <?php _e('If you would use your maintenance.php page in your theme folder, click Yes.', 'wp-maintenance'); ?>&nbsp;<br /><br />
                                 <input type= "radio" name="wp_maintenance_settings[pageperso]" value="1" <?php if($paramMMode['pageperso']==1) { echo ' checked'; } ?>>&nbsp;<?php _e('Yes', 'wp-maintenance'); ?>&nbsp;&nbsp;&nbsp;
                                 <input type= "radio" name="wp_maintenance_settings[pageperso]" value="0" <?php if(!$paramMMode['pageperso'] or $paramMMode['pageperso']==0) { echo ' checked'; } ?>>&nbsp;<?php _e('No', 'wp-maintenance'); ?><br /><br />
