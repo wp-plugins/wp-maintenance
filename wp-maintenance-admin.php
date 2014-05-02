@@ -380,16 +380,16 @@ if($_POST['wpm_initcss']==1) {
                             </li>
                             <li>&nbsp;</li>
                              
-                             <!-- UPLOADER UNE IMAGE -->
+                            <!-- UPLOADER UNE IMAGE DE FOND -->
                             <li><h3><?php _e('Upload a background picture', 'wp-maintenance'); ?></h3>
                                 <input type= "checkbox" name="wp_maintenance_settings[b_enable_image]" value="1" <?php if($paramMMode['b_enable_image']==1) { echo ' checked'; } ?>> <?php _e('Enable image background', 'wp-maintenance'); ?><br /><br />
-                            <?php if($paramMMode['b_image'] && (!$paramMMode['b_pattern'] or $paramMMode['b_pattern']==0) ) { ?>
+                            <?php if($paramMMode['b_image']!='' && (!$paramMMode['b_pattern'] or $paramMMode['b_pattern']==0) ) { ?>
                                 <?php _e('You use this background picture:', 'wp-maintenance'); ?><br />
                                 <img src="<?php echo $paramMMode['b_image']; ?>" width="300" style="border:1px solid #333;padding:3px;background: url('<?php echo $paramMMode['b_image']; ?>');" /><br />
                             <?php } ?>
                             <?php if($paramMMode['b_pattern']>0) { ?>
                                 <?php _e('You use this pattern:', 'wp-maintenance'); ?><br />
-                                <div style="background: url('<?php echo $paramMMode['b_image']; ?>');width:250px;height:250px;border:1px solid #333;"></div>
+                                <div style="background: url('<?php echo WP_PLUGIN_URL ?>/wp-maintenance/images/pattern<?php echo $paramMMode['b_pattern']; ?>.png');width:250px;height:250px;border:1px solid #333;"></div>
                             <?php } ?>
                             <input id="upload_b_image" size="36" name="wp_maintenance_settings[b_image]" value="<?php echo $paramMMode['b_image']; ?>" type="text" /> <a href="#" id="upload_b_image_button" class="button" OnClick="this.blur();"><span> <?php _e('Select or Upload your picture', 'wp-maintenance'); ?> </span></a>
                             <br /><small><?php _e('Enter a URL or upload an image.', 'wp-maintenance'); ?></small><br /><br />
