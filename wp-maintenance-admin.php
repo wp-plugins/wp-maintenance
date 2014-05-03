@@ -198,23 +198,15 @@ if($_POST['wpm_initcss']==1) {
 }
 
 ?>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <style>
-    #sortable { list-style-type: none; margin: 0; padding: 0; width: 35%; }
-    #sortable li { padding: 0.4em; padding-left: 1.5em; height: 30px;cursor: pointer; cursor: hand;  }
-    #sortable li span { position: absolute; margin-left: -1.3em; }
-    #sortable li:hover { background-color: #d2d2d2; }
+    .sortable { list-style-type: none; margin: 0; padding: 0; width: 35%; }
+    .sortable li { padding: 0.4em; padding-left: 1.5em; height: 30px;cursor: pointer; cursor: move;  }
+    .sortable li span { font-size: 15px;margin-right: 0.8em;cursor: move; }
+    .sortable li:hover { background-color: #d2d2d2; }
     #pattern { text-align: left; margin: 5px 0; word-spacing: -1em;list-style-type: none; }
     #pattern li { display: inline-block; list-style: none;margin-right:15px;text-align:center;  }
     #pattern li.current { background: #66CC00; color: #fff; }
 </style>
-<script>
-    $(function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-    });
-</script>
 <style type="text/css">.postbox h3 { cursor:pointer; }</style>
 <div class="wrap">
 
@@ -271,24 +263,26 @@ if($_POST['wpm_initcss']==1) {
                              <input type="text" name="wp_maintenance_social_options[texte]" value="<?php if($paramSocialOption['texte']=='') { _e('Follow me on', 'wp-maintenance'); } else { echo stripslashes(trim($paramSocialOption['texte'])); } ?>" /><br /><br />
                              <!-- Liste des réseaux sociaux -->
                              <?php _e('Drad and drop the lines to put in the order you want:', 'wp-maintenance'); ?><br /><br />
+                             <ul class="sortable">
                              <?php 
                                     if($paramSocial) { 
-                             ?>
-                                     <ul id="sortable">
-                                         <?php
                                             foreach($paramSocial as $socialName=>$socialUrl) {
                                          ?>
-                                      <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><img src="<?php echo WPM_ICONS_URL; ?>24x24/<?php echo $socialName; ?>.png" align="left" hspace="3"/><?php echo ucfirst($socialName); ?> <input type= "text" name="wp_maintenance_social[<?php echo $socialName; ?>]" value="<?php echo $socialUrl; ?>" onclick="select()" /></li>
+                                      <li><span>::</span><img src="<?php echo WPM_ICONS_URL; ?>24x24/<?php echo $socialName; ?>.png" hspace="3" valign="middle" /><?php echo ucfirst($socialName); ?> <input type= "text" name="wp_maintenance_social[<?php echo $socialName; ?>]" value="<?php echo $socialUrl; ?>" onclick="select()" /></li>
                                          <?php } ?>
-                                    </ul>
                              <?php 
                                     } else { 
                                         $arr = array('facebook', 'twitter', 'linkedin', 'flickr', 'youtube', 'pinterest', 'vimeo', 'instagram', 'google_plus', 'about_me');
                                         foreach ($arr as &$value) {
-                                            echo '<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><img src="'.WPM_ICONS_URL.'24x24/'.$value.'.png" align="left" hspace="3"/>'.ucfirst($value).' <input type= "text" name="wp_maintenance_social['.$value.']" value="'.$paramSocial[$value].'" onclick="select()" ><br />';
+                                            echo '<li><span>::</span><img src="'.WPM_ICONS_URL.'24x24/'.$value.'.png" valign="middle" hspace="3"/>'.ucfirst($value).' <input type= "text" name="wp_maintenance_social['.$value.']" value="'.$paramSocial[$value].'" onclick="select()" ><br />';
                                         }
                                     }
                              ?>
+                             </ul>
+                             <script src="<?php echo WPM_PLUGIN_URL; ?>jquery.sortable.js"></script>
+                             <script>
+                                 jQuery('.sortable').sortable();
+                             </script>
                              <br />
                              <?php _e('Choose icons size:', 'wp-maintenance'); ?>
                              <select name="wp_maintenance_social_options[size]">
