@@ -4,7 +4,7 @@ Donate link:
 Tags: wordpress maintenance plugin
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 1.5
+Stable tag: 1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,11 +65,14 @@ Oui mais merci de me soumettre les modifications souhaitées afin de mettre à j
 
 == Upgrade Notice ==
 
-= 1.5 =
+= 1.6 =
 Cette version est stable / This version is stable
 
 
 == Changelog ==
+
+= 1.6 =
+* Correction bug date fin compte à rebours / Fixed bug end date countdown
 
 = 1.5 =
 * Correction bug drag&drop Réseaux Sociaux / Resolved drag&drop social networks bug
@@ -102,7 +105,7 @@ Cette version est stable / This version is stable
 * Conflits javascript résolus / Javascript conflicts fixed
 
 = 0.5 =
-*Ajout de l'édition de la feuille de Style CSS / Add editor for stylesheet
+* Ajout de l'édition de la feuille de Style CSS / Add editor for stylesheet
 
 = 0.4 =
 * Plugin en multilangue / Add multilanguage
@@ -111,9 +114,9 @@ Cette version est stable / This version is stable
 * Refonte de l'admin et ajout d'un compte à rebours / Upgrade the admin and added a countdown
 
 = 0.2 =
-* Ajout du ColorPicker. / Add a ColorPicker
+* Ajout du ColorPicker / Add a ColorPicker
 
 = 0.1 =
-* Première version du plugin. / First version
+* Première version du plugin / First version
 
 

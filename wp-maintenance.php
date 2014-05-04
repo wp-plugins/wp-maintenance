@@ -6,12 +6,13 @@ Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture and countdown.
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 1.5
+Version: 1.6
 */
 
 
 /*
 Change Log
+04/05/2014 - Correction bug date fin compte à rebours
 03/05/2014 - Correction bug drag&drop Réseaux Sociaux
 01/05/2014 - Modifs countdown et icones réseaux sociaux..
 30/04/2014 - Ajout code analytics, icones réseaux sociaux, newletter, image de fond...
@@ -56,7 +57,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '1.5');
+define('WPM_VERSION', '1.6');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -386,7 +387,7 @@ function wpm_maintenance_mode() {
 
     $paramSocialOption = get_option('wp_maintenance_social_options');
     
-    /* Désactive pour les Roles */
+    /* Désactive le mode maintenance pour les Roles définis */
     if($paramLimit) {
         foreach($paramLimit as $limitrole) {
             if( current_user_can($limitrole) == true ) {
@@ -394,15 +395,17 @@ function wpm_maintenance_mode() {
             }
         }
     }
+    /* On désactive le mode maintenance pour les admins */
     if( current_user_can('administrator') == true ) {
         $statusActive = 0;
     }
 
     /* Si on désactive le mode maintenance en fin de compte à rebours */
     if($paramMMode['disable']==1 && $statusActive == 1) {
-        //date_default_timezone_set('Europe/Madrid'); #TODO A GARDER ?
-        $dateNow = date("d-m-Y H:i:s");
-        $dateFinCpt = $paramMMode['date_cpt_jj'].'-'.$paramMMode['date_cpt_mm'].'-'.$paramMMode['date_cpt_aa'].' '.$paramMMode['date_cpt_hh'].':'.$paramMMode['date_cpt_mn'].':'.$paramMMode['date_cpt_ss'];
+
+        $dateNow = strtotime(date("d-m-Y H:i:s")) + 3600 * get_option('gmt_offset');
+        $dateFinCpt = strtotime(date($paramMMode['date_cpt_jj'].'-'.$paramMMode['date_cpt_mm'].'-'.$paramMMode['date_cpt_aa'].' '.$paramMMode['date_cpt_hh'].':'.$paramMMode['date_cpt_mn'].':'.$paramMMode['date_cpt_ss']));
+        
         if( $dateNow > $dateFinCpt ) {
             $ChangeStatus = wpm_change_active();
             $statusActive = 0;
@@ -414,8 +417,8 @@ function wpm_maintenance_mode() {
             );
             update_option('wp_maintenance_settings', $wpm_options);
         }
+        
     }
-    //exit($dateNow.' > '.$dateFinCpt);
 
     if ($statusActive == 1) {
 
@@ -439,14 +442,14 @@ function wpm_maintenance_mode() {
             if($paramMMode['text_maintenance']=="") { $paramMMode['text_maintenance'] = 'Ce site est en maintenance'; }
             if($paramMMode['image']=="") { $paramMMode['image'] = WP_PLUGIN_URL.'/wp-maintenance/default.png'; }
 
-            // On récupère les tailles de l'image
+            /* On récupère les tailles de l'image */
             list($width, $height, $type, $attr) = getimagesize($paramMMode['image']);
 
             /* Date compte à rebours / Convertie en format US */
             $timestamp = strtotime($paramMMode['date_cpt_aa'].'/'.$paramMMode['date_cpt_mm'].'/'.$paramMMode['date_cpt_jj'].' '.$paramMMode['date_cpt_hh'].':'.$paramMMode['date_cpt_mn']);
             $dateCpt = date('m/d/Y h:i A', $timestamp);
 
-            // Traitement de la feuille de style
+            /* Traitement de la feuille de style */
             $styleRemplacements = array (
                 "#_COLORTXT" => $paramMMode['color_txt'],
                 "#_COLORBG" => $paramMMode['color_bg'],
