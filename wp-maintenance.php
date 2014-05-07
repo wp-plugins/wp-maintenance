@@ -6,7 +6,7 @@ Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture and countdown.
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 1.6
+Version: 1.7
 */
 
 
@@ -57,7 +57,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '1.6');
+define('WPM_VERSION', '1.7');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -263,6 +263,13 @@ function wpm_admin_scripts() {
     wp_enqueue_script('thickbox');
     wp_register_script('wpm-my-upload', WP_PLUGIN_URL.'/wp-maintenance/wpm-script.js', array('jquery','media-upload','thickbox'));
     wp_enqueue_script('wpm-my-upload');
+    
+    // Now we can localize the script with our data.
+    wp_localize_script( 'wpm-my-upload', 'Data', array(
+      'textebutton'  =>  __( 'Choose This Image', 'wp-maintenance' ),
+      'title'  => __( 'Choose Image', 'wp-maintenance' ),
+    ) );
+    
     wp_register_script('wpm-admin-settings', WP_PLUGIN_URL.'/wp-maintenance/wpm-admin-settings.js');
     wp_enqueue_script('wpm-admin-settings');
 }
