@@ -487,7 +487,7 @@ function wpm_maintenance_mode() {
             if($paramMMode['b_pattern']>0 && $paramMMode['b_enable_image']==1) {
             $addBImage = '
             body {
-                background:url('.WP_PLUGIN_URL.'/wp-maintenance/images/pattern'.$paramMMode['b_pattern'].'.png) '.$paramMMode['b_repeat_image'].';
+                background:url('.WP_PLUGIN_URL.'/wp-maintenance/images/pattern'.$paramMMode['b_pattern'].'.png) '.$paramMMode['b_repeat_image'].'  '.$paramMMode['color_bg'].';
                     padding:0;
                     margin:0;
             }';
