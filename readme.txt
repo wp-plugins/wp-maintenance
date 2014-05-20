@@ -3,8 +3,8 @@ Contributors: Florent73
 Donate link: 
 Tags: wordpress maintenance plugin
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 1.7
+Tested up to: 3.9.1
+Stable tag: 1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,11 +65,14 @@ Oui mais merci de me soumettre les modifications souhaitées afin de mettre à j
 
 == Upgrade Notice ==
 
-= 1.7 =
+= 1.8 =
 Cette version est stable / This version is stable
 
 
 == Changelog ==
+
+= 1.8 =
+* Correction bug upload du logo et du fond / Fixed bug logo and background upload
 
 = 1.7 =
 * Correction bug upload du logo et du fond / Fixed bug logo and background upload

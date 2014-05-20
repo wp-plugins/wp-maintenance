@@ -3,15 +3,16 @@
 /*
 Plugin Name: WP Maintenance
 Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
-Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture and countdown.
+Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 1.7
+Version: 1.8
 */
 
 
 /*
 Change Log
+20/05/2014 - Correction bug upload d'image
 04/05/2014 - Correction bug date fin compte à rebours
 03/05/2014 - Correction bug drag&drop Réseaux Sociaux
 01/05/2014 - Modifs countdown et icones réseaux sociaux..
@@ -57,7 +58,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '1.7');
+define('WPM_VERSION', '1.8');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -263,6 +264,9 @@ function wpm_admin_scripts() {
     wp_enqueue_script('thickbox');
     wp_register_script('wpm-my-upload', WP_PLUGIN_URL.'/wp-maintenance/wpm-script.js', array('jquery','media-upload','thickbox'));
     wp_enqueue_script('wpm-my-upload');
+    
+    // If you're not including an image upload then you can leave this function call out
+    wp_enqueue_media();
     
     // Now we can localize the script with our data.
     wp_localize_script( 'wpm-my-upload', 'Data', array(
