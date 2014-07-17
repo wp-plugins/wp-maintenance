@@ -456,7 +456,7 @@ function wpm_maintenance_mode() {
             if($paramMMode['color_txt']=="") { $paramMMode['color_txt'] = "#888888"; }
 
             /* Paramètres par défaut */
-            if($paramMMode['text_maintenance']=="") { $paramMMode['text_maintenance'] = 'Ce site est en maintenance'; }
+            //if($paramMMode['text_maintenance']=="") { $paramMMode['text_maintenance'] = 'Ce site est en maintenance'; }
             if($paramMMode['image']=="") { $paramMMode['image'] = WP_PLUGIN_URL.'/wp-maintenance/default.png'; }
 
             /* On récupère les tailles de l'image */
