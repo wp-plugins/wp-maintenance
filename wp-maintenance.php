@@ -6,12 +6,13 @@ Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 1.8
+Version: 1.9
 */
 
 
 /*
 Change Log
+17/07/2014 - Correction bug feuille de style
 20/05/2014 - Correction bug upload d'image
 04/05/2014 - Correction bug date fin compte à rebours
 03/05/2014 - Correction bug drag&drop Réseaux Sociaux
@@ -58,7 +59,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '1.8');
+define('WPM_VERSION', '1.9');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -207,7 +208,7 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     background-color: #_COLOR_BG_BT;
     color:#_COLOR_TXT_BT;
     padding-top:10px;
-    position:absolute;
+    position:fixed;
     bottom:0;
 }
 .wpm_copyright {
@@ -248,7 +249,13 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     }
     #main .block {
         margin-bottom: 0;
-        }
+    }
+    #cptR-days-span, #cptR-hours-span, #cptR-minutes-span, #cptR-seconds-span {
+        font-size: 8px;
+    }
+    #main #intro h3 {
+        font-size: 6vw;
+    }
 }  
 @media screen and (min-width: 480px) and (max-width: 767px) {
     .full {
@@ -256,7 +263,9 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     }
 }
     ';
-    update_option('wp_maintenance_style', $wp_maintenanceStyles);
+    if(!get_option('wp_maintenance_style') or get_option('wp_maintenance_style')=='') { 
+        update_option('wp_maintenance_style', $wp_maintenanceStyles);
+    }
 }
 
 function wpm_admin_scripts() {
@@ -450,7 +459,7 @@ function wpm_maintenance_mode() {
             if($paramMMode['color_txt']=="") { $paramMMode['color_txt'] = "#888888"; }
 
             /* Paramètres par défaut */
-            if($paramMMode['text_maintenance']=="") { $paramMMode['text_maintenance'] = 'Ce site est en maintenance'; }
+            //if($paramMMode['text_maintenance']=="") { $paramMMode['text_maintenance'] = 'Ce site est en maintenance'; }
             if($paramMMode['image']=="") { $paramMMode['image'] = WP_PLUGIN_URL.'/wp-maintenance/default.png'; }
 
             /* On récupère les tailles de l'image */
@@ -517,7 +526,21 @@ function wpm_maintenance_mode() {
     text-align: '.$paramSocialOption['align'].';
 }
 #cptR-day, #cptR-hours, #cptR-minutes, #cptR-seconds {
-    width:'.($paramMMode['date_cpt_size']*1.8).'px;
+    width:'.($paramMMode['date_cpt_size']*1.4).'px;
+}
+.cptR-rec_countdown {
+    font-size:'.$paramMMode['date_cpt_size'].'px;
+}
+@media screen and (min-width: 200px) and (max-width: 480px) {
+    #cptR-day, #cptR-hours, #cptR-minutes, #cptR-seconds {
+        width:'.($paramMMode['date_cpt_size']*0.9).'px;
+    }
+    .cptR-rec_countdown {
+        font-size:'.($paramMMode['date_cpt_size']*0.6).'px;
+    }
+    #cptR-days-span, #cptR-hours-span, #cptR-minutes-span, #cptR-seconds-span {
+        font-size: 8px;
+    }
 }
         </style>
         '.do_shortcode('[wpm_analytics enable="'.$paramMMode['analytics'].'"]').'

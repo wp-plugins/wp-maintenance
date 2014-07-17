@@ -125,10 +125,10 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     display: inline-block;
     list-style: none;
     margin:5px;
-    opacity:0.6;
+    opacity:1;
 }
 .wpm_horizontal li:hover {
-    opacity:1;
+    opacity:0.5;
 }
 #wpm_footer {
     width: 100%;
@@ -139,7 +139,7 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     color:#_COLOR_TXT_BT;
     padding-top:10px;
     font-size: 12px;
-    position:absolute;
+    position:fixed;
     bottom:0;
 }
 .wpm_copyright {
@@ -180,7 +180,13 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     }
     #main .block {
         margin-bottom: 0;
-        }
+    }
+    #cptR-days-span, #cptR-hours-span, #cptR-minutes-span, #cptR-seconds-span {
+        font-size: 8px;
+    }
+    #main #intro h3 {
+        font-size: 6vw;
+    }
 }   
 
 @media screen and (min-width: 480px) and (max-width: 767px) {
