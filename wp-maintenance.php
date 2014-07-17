@@ -253,6 +253,9 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     #cptR-days-span, #cptR-hours-span, #cptR-minutes-span, #cptR-seconds-span {
         font-size: 8px;
     }
+    #main #intro h3 {
+        font-size: 6vw;
+    }
 }  
 @media screen and (min-width: 480px) and (max-width: 767px) {
     .full {
