@@ -332,7 +332,7 @@ function wpm_maintenance_mode() {
 
             if($paramMMode['b_image'] && $paramMMode['b_enable_image']==1) {
                 if($paramMMode['b_repeat_image']=='') { $paramMMode['b_repeat_image'] = 'repeat'; }
-                if($paramMMode['b_fixed_image']=='') { $paramMMode['b_fixed_image'] = 'fixed'; }
+                //if($paramMMode['b_fixed_image']=='') { $paramMMode['b_fixed_image'] = 'fixed'; }
             $addBImage = '
             body {
                 background:url('.$paramMMode['b_image'].') '.$paramMMode['b_repeat_image'].';
