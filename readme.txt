@@ -1,10 +1,10 @@
-=== Plugin Name ===
+﻿=== Plugin Name ===
 Contributors: Florent73
 Donate link: 
 Tags: wordpress maintenance plugin
 Requires at least: 3.0
-Tested up to: 3.9.1
-Stable tag: 1.9
+Tested up to: 3.9.2
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ Create and customize your maintenance page
 == Description ==
 Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec :
 
-- Vos choix de couleurs de texte
+- Vos choix de polices et couleurs de texte
 - une image pour votre logo
 - une image de fond ou un pattern
 - un compte à rebours
@@ -25,7 +25,7 @@ Le plugin WP Maintenance vous permet de mettre votre site en attente le temps po
 
 The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture and countdown with:
 
-- Choice texts colors
+- Choice texts colors and fonts
 - Upload logo picture
 - Upload background picture or pattern
 - Countdown
@@ -65,11 +65,14 @@ Oui mais merci de me soumettre les modifications souhaitées afin de mettre à j
 
 == Upgrade Notice ==
 
-= 1.9 =
+= 2.0 =
 Cette version est stable / This version is stable
 
 
 == Changelog ==
+
+= 2.0 =
+* Ajout des Google Fonts et style de police / Adding Google Fonts and font style 
 
 = 1.9 =
 * Correction bug auto-reset de la CSS / Fixed Bug CSS auto-reset 

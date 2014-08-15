@@ -20,6 +20,19 @@ if($_POST['action'] == 'update' && $_POST["wp_maintenance_settings"]!='') {
 if(get_option('wp_maintenance_settings')) { extract(get_option('wp_maintenance_settings')); }
 $paramMMode = get_option('wp_maintenance_settings');
 
+if($paramMMode['font_title_size']=='') { $paramMMode['font_title_size'] = 40; }
+if($paramMMode['font_title_style']=='') { $paramMMode['font_title_style'] = 'normal'; }
+if($paramMMode['font_title_weigth']=='') { $paramMMode['font_title_weigth'] = 'normal'; }
+if($paramMMode['font_text_size']=='') { $paramMMode['font_text_size'] = 40; }
+if($paramMMode['font_text_style']=='') { $paramMMode['font_text_style'] = 'normal'; }
+if($paramMMode['font_text_weigth']=='') { $paramMMode['font_text_weigth'] = 'normal'; }
+if($paramMMode['font_text_bottom']=='') { $paramMMode['font_text_bottom'] = 'normal'; }
+if($paramMMode['font_bottom_size']=='') { $paramMMode['font_bottom_size'] = 12; }
+if($paramMMode['font_bottom_weigth']=='') { $paramMMode['font_bottom_weigth'] = 'normal'; }
+if($paramMMode['font_bottom_style']=='') { $paramMMode['font_bottom_style'] = 'normal'; }
+if($paramMMode['font_cpt']=='') { $paramMMode['font_cpt'] = 'Acme'; }
+if($paramMMode['date_cpt_size']=='') { $paramMMode['date_cpt_size'] = 72; }
+
 // Récupère les Rôles et capabilités
 if(get_option('wp_maintenance_limit')) { extract(get_option('wp_maintenance_limit')); }
 $paramLimit = get_option('wp_maintenance_limit');
@@ -32,173 +45,10 @@ $paramSocial = get_option('wp_maintenance_social');
 if(get_option('wp_maintenance_social_options')) { extract(get_option('wp_maintenance_social_options')); }
 $paramSocialOption = get_option('wp_maintenance_social_options');
 
-/* Feuille de style par défault */
-$wpm_style_defaut = '
-h1 {
-    margin-left:auto;
-    margin-right:auto;
-    width: 700px;
-    padding: 10px;
-    text-align:center;
-    color: #_COLORTXT;
-}
-
-body {
-    background: none repeat scroll 0 0 #_COLORBG;
-    color: #_COLORTXT;
-    font: 12px/1.5em Arial,Helvetica,Sans-serif;
-    margin:0;
-    padding:0;
-}
-#header {
-    clear: both;
-    padding: 5px 0 10px;
-    position: relative;
-}
-.full {
-    margin: 0 auto;
-    width: 720px;
-}
-#logo {
-    text-align: center;
-}
-#main {
-    padding: 0px 50px;
-}
-#main .block {
-    font-size: 13px;
-    margin-bottom: 30px;
-}
-#main .block h3 {
-    line-height: 60px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-#main #intro h3 {
-    font-size: 40px;
-}
-#main #intro p {
-    font-family: Muli,sans-serif;
-    font-size: 16px;
-    line-height: 22px;
-    text-align: center;
-}
-
-a:link {color: #_COLORTXT;text-decoration: underline;}
-a:visited {color: #_COLORTXT;text-decoration: underline;}
-a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
-
-#maintenance {
-    text-align:center;
-    margin-top:25px;
-}
-
-.cptR-rec_countdown {
-    position: relative;
-    font-family: "Ubuntu";
-    background: #_COLORCPTBG;
-    display: inline-block;
-    line-height: #_DATESIZE px;
-    min-width: 160px;
-    min-height: 60px;
-    padding: 30px 20px 5px 20px;
-    text-transform: uppercase;
-    text-align:center;
-}
-
-#cptR-day, #cptR-hours, #cptR-minutes, #cptR-seconds {
-    color: #_COLORCPT;
-    display: block;
-    font-size: #_DATESIZE;
-    height: 40px;
-    line-height: 18px;
-    text-align: center;
-    float:left;
-}
-#cptR-days-span, #cptR-hours-span, #cptR-minutes-span, #cptR-seconds-span {
-    color: #_COLORCPT;
-    font-size: 10px;
-    padding: 25px 5px 0 2px;
-}
-
-.wpm_horizontal li {
-    display: inline-block;
-    list-style: none;
-    margin:5px;
-    opacity:1;
-}
-.wpm_horizontal li:hover {
-    opacity:0.5;
-}
-#wpm_footer {
-    width: 100%;
-    clear: both;
-    height: 45px;
-    text-align:center;
-    background-color: #_COLOR_BG_BT;
-    color:#_COLOR_TXT_BT;
-    padding-top:10px;
-    font-size: 12px;
-    position:fixed;
-    bottom:0;
-}
-.wpm_copyright {
-    color:#_COLOR_TXT_BT;
-    font-size: 12px;
-}
-.wpm_copyright a, a:hover, a:visited {
-    color:#_COLOR_TXT_BT;
-    text-decoration:none;
-    font-size: 12px;
-}
-.wpm_social {
-    padding: 0 45px;
-    text-align: center;
-}
-.wpm_newletter {
-    margin:15px 10px;
-    text-align:center;
-}
-@media screen and (min-width: 200px) and (max-width: 480px) {
-    .full {
-        max-width:300px;
-    }
-    #header {
-        padding: 0;
-    }
-    #main {
-        padding: 0;
-    }
-    .wpm_social {
-        padding: 0 15px;
-    }
-    .cptR-rec_countdown {
-        padding:0;
-    }
-    #main .block h3 {
-        line-height: 0px;
-    }
-    #main .block {
-        margin-bottom: 0;
-    }
-    #cptR-days-span, #cptR-hours-span, #cptR-minutes-span, #cptR-seconds-span {
-        font-size: 8px;
-    }
-    #main #intro h3 {
-        font-size: 6vw;
-    }
-}   
-
-@media screen and (min-width: 480px) and (max-width: 767px) {
-    .full {
-        max-width:342px;
-    }
-}
-';
 
 /* Si on réinitialise les feuille de styles  */
 if($_POST['wpm_initcss']==1) {
-    update_option('wp_maintenance_style', $wpm_style_defaut);
+    update_option( 'wp_maintenance_style', wpm_print_style() );
     $options_saved = true;
     echo '<div id="message" class="updated fade"><p><strong>Feuillez de style réinitialisée !</strong></p></div>';
 }
@@ -220,7 +70,7 @@ if($_POST['wpm_initcss']==1) {
     <div id="icon-options-general" class="icon32"><br></div>
         <h2 class="nav-tab-wrapper">
             <a id="wpm-menu-general" class="nav-tab nav-tab-active" href="#general" onfocus="this.blur();"><?php _e('General', 'wp-maintenance'); ?></a>
-            <a id="wpm-menu-couleurs" class="nav-tab" href="#couleurs" onfocus="this.blur();"><?php _e('Colors', 'wp-maintenance'); ?></a>
+            <a id="wpm-menu-couleurs" class="nav-tab" href="#couleurs" onfocus="this.blur();"><?php _e('Colors & Fonts', 'wp-maintenance'); ?></a>
             <a id="wpm-menu-image" class="nav-tab" href="#image" onfocus="this.blur();"><?php _e('Picture', 'wp-maintenance'); ?></a>
             <a id="wpm-menu-compte" class="nav-tab" href="#compte" onfocus="this.blur();"><?php _e('CountDown', 'wp-maintenance'); ?></a>
             <a id="wpm-menu-styles" class="nav-tab" href="#styles" onfocus="this.blur();"><?php _e('CSS Style', 'wp-maintenance'); ?></a>
@@ -343,18 +193,108 @@ if($_POST['wpm_initcss']==1) {
                      <ul>
                         <!-- COULEUR DU FOND DE PAGE -->
                         <li><h3><?php _e('Choice texts colors:', 'wp-maintenance'); ?></h3>
-                            <div id="pmColor" style="position: relative;">
-                                   <em><?php _e('Background page color:', 'wp-maintenance'); ?></em> <br /><input type="text" value="<?php echo $paramMMode['color_bg']; ?>" name="wp_maintenance_settings[color_bg]" class="wpm-color-field" data-default-color="#f1f1f1" /> <br />
-                                   <em><?php _e('Text color:', 'wp-maintenance'); ?></em> <br /><input type="text" value="<?php echo $paramMMode['color_txt']; ?>" name="wp_maintenance_settings[color_txt]" class="wpm-color-field" data-default-color="#888888" /> <br /> <br />
+                        <div id="pmColor" style="position: relative;">
+                               <em><?php _e('Background page color:', 'wp-maintenance'); ?></em> <br /><input type="text" value="<?php echo $paramMMode['color_bg']; ?>" name="wp_maintenance_settings[color_bg]" class="wpm-color-field" data-default-color="#f1f1f1" /> <br />
+                               <em><?php _e('Text color:', 'wp-maintenance'); ?></em> <br /><input type="text" value="<?php echo $paramMMode['color_txt']; ?>" name="wp_maintenance_settings[color_txt]" class="wpm-color-field" data-default-color="#888888" /> <br /> <br />
+                                
+                                <!-- POLICE DU TITRE -->
+                                <em><stong><?php _e('Title font settings', 'wp-maintenance'); ?></stong></em>
+                                <div>
+                                    <table cellspacing="10">
+                                        <tr>
+                                            <td valign="top" align="left"><?php echo wpm_getFontsList('wp_maintenance_settings[font_title]', $paramMMode['font_title']); ?></td>
+                                            <td>
+                                                <?php _e('Size:', 'wp-maintenance'); ?>
+                                                <input type="text" size="3" name="wp_maintenance_settings[font_title_size]" value="<?php echo stripslashes($paramMMode['font_title_size']); ?>" />px
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2">
+                                                <input type="radio" name="wp_maintenance_settings[font_title_weigth]" value="normal" <?php if($paramMMode['font_title_weigth']=='normal') { echo 'checked'; } ?> >Normal
+                                                <input type="radio" name="wp_maintenance_settings[font_title_weigth]" value="bold" <?php if($paramMMode['font_title_weigth']=='bold') { echo 'checked'; } ?>>Bold
+                                                <input type="checkbox" name="wp_maintenance_settings[font_title_style]" value="italic" <?php if($paramMMode['font_title_style']=='italic') { echo 'checked'; } ?>>Italic
+                                            </td>
+                                        </tr>
+                                    </table>   
+                                </div><br />
+                                <!-- FIN POLICE DU TITRE-->
+                            
+                                <!-- POLICE DU TEXTE -->
+                                <em><?php _e('Text font settings', 'wp-maintenance'); ?></em>
+                                <div>
+                                    <table cellspacing="10">
+                                        <tr>
+                                            <td valign="top" align="left"><?php echo wpm_getFontsList('wp_maintenance_settings[font_text]', $paramMMode['font_text']); ?></td>
+                                            <td>
+                                                <?php _e('Size:', 'wp-maintenance'); ?>
+                                                <input type="text" size="3" name="wp_maintenance_settings[font_text_size]" value="<?php echo stripslashes($paramMMode['font_text_size']); ?>" />px
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2">
+                                                <input type="radio" name="wp_maintenance_settings[font_text_weigth]" value="normal" <?php if($paramMMode['font_text_weigth']=='normal') { echo 'checked'; } ?> >Normal
+                                                <input type="radio" name="wp_maintenance_settings[font_text_weigth]" value="bold" <?php if($paramMMode['font_text_weigth']=='bold') { echo 'checked'; } ?>>Bold
+                                                <input type="checkbox" name="wp_maintenance_settings[font_text_style]" value="italic" <?php if($paramMMode['font_text_style']=='italic') { echo 'checked'; } ?>>Italic
+                                            </td>
+                                        </tr>
+                                    </table>   
+                                </div>
+                                <!-- FIN POLICE DU TEXTE -->
+                                
                            <h3><?php _e('Choice countdown colors:', 'wp-maintenance'); ?></h3>
                            <em><?php _e('Countdown text color:', 'wp-maintenance'); ?></em> <br /><input type="text" value="<?php echo $paramMMode['color_cpt']; ?>" name="wp_maintenance_settings[color_cpt]" class="wpm-color-field" data-default-color="#FFFFFF" />
                            <br />
-                           <em><?php _e('Countdown background color:', 'wp-maintenance'); ?></em> <br /><input type="text" value="<?php echo $paramMMode['color_cpt_bg']; ?>" name="wp_maintenance_settings[color_cpt_bg]" class="wpm-color-field" data-default-color="#888888" />
+                           <em><?php _e('Countdown background color:', 'wp-maintenance'); ?></em> <br /><input type="text" value="<?php echo $paramMMode['color_cpt_bg']; ?>" name="wp_maintenance_settings[color_cpt_bg]" class="wpm-color-field" data-default-color="#888888" /><br /><br />
+                                
+                                <!-- POLICE DU COMPTEUR -->
+                                <em><?php _e('Countdown font settings', 'wp-maintenance'); ?></em>
+                                <div>
+                                    <table cellspacing="10">
+                                        <tr>
+                                            <td valign="top" align="left"><?php echo wpm_getFontsList('wp_maintenance_settings[font_cpt]', $paramMMode['font_cpt']); ?></td>
+                                            <td>
+                                                <?php _e('Size:', 'wp-maintenance'); ?>
+                                                <input type="text" size="3" name="wp_maintenance_settings[date_cpt_size]" value="<?php echo stripslashes($paramMMode['date_cpt_size']); ?>" />px
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <!-- FIN POLICE DU COMPTEUR -->
+                                <br />
+                            
                             </div>
                             <h3><?php _e('Choice texts bottom colors:', 'wp-maintenance'); ?></h3>
                             <div id="pmColor" style="position: relative;">
                                    <em><?php _e('Bottom color:', 'wp-maintenance'); ?></em> <br /><input type="text" value="<?php echo $paramMMode['color_bg_bottom']; ?>" name="wp_maintenance_settings[color_bg_bottom]" class="wpm-color-field" data-default-color="#333333" /> <br />
-                                   <em><?php _e('Text bottom color:', 'wp-maintenance'); ?></em> <br /><input type="text" value="<?php echo $paramMMode['color_text_bottom']; ?>" name="wp_maintenance_settings[color_text_bottom]" class="wpm-color-field" data-default-color="#ffffff" /> <br /> <br />
+                                   <em><?php _e('Text bottom color:', 'wp-maintenance'); ?></em> <br /><input type="text" value="<?php echo $paramMMode['color_text_bottom']; ?>" name="wp_maintenance_settings[color_text_bottom]" class="wpm-color-field" data-default-color="#ffffff" /> <br /> <br />                                
+
+                                <!-- POLICE DU TEXTE BAS DE PAGE -->
+                                <em><?php _e('Text font on the bottom page:', 'wp-maintenance'); ?></em>
+                                <div>
+                                    <table cellspacing="10">
+                                        <tr>
+                                            <td valign="top" align="left"><?php echo wpm_getFontsList('wp_maintenance_settings[font_text_bottom]', $paramMMode['font_text_bottom']); ?></td>
+                                            <td>
+                                                <?php _e('Size:', 'wp-maintenance'); ?>
+                                                <input type="text" size="3" name="wp_maintenance_settings[font_bottom_size]" value="<?php echo stripslashes($paramMMode['font_bottom_size']); ?>" />px
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2">
+                                                <input type="radio" name="wp_maintenance_settings[font_bottom_weigth]" value="normal" <?php if($paramMMode['font_bottom_weigth']=='normal') { echo 'checked'; } ?> >Normal
+                                                <input type="radio" name="wp_maintenance_settings[font_bottom_weigth]" value="bold" <?php if($paramMMode['font_bottom_weigth']=='bold') { echo 'checked'; } ?>>Bold
+                                                <input type="checkbox" name="wp_maintenance_settings[font_bottom_style]" value="italic" <?php if($paramMMode['font_bottom_style']=='italic') { echo 'checked'; } ?>>Italic
+                                            </td>
+                                        </tr>
+                                    </table>   
+                                </div>
+                                <br />
+                                <!-- FIN POLICE DU TEXTE BAS DE PAGE -->
+                                <br /><br />
                         </li>
                         <li>&nbsp;</li>
 

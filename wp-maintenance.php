@@ -6,12 +6,13 @@ Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 1.9
+Version: 2.0
 */
 
 
 /*
 Change Log
+09/08/2014 - Ajout de Fonts et Styles
 17/07/2014 - Correction bug feuille de style
 20/05/2014 - Correction bug upload d'image
 04/05/2014 - Correction bug date fin compte à rebours
@@ -43,6 +44,7 @@ $wpmaintenance_dashboard = ( is_admin() ) ? 'options-general.php?page=wp-mainten
 define( 'WPM_SETTINGS', $wpmaintenance_dashboard);
 
 include("uninstall.php");
+include("wpm_fonctions.php");
 
 // Add "Réglages" link on plugins page
 add_filter( 'plugin_action_links_' . WPM_BASENAME, 'wpm_plugin_actions' );
@@ -59,7 +61,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '1.9');
+define('WPM_VERSION', '2.0');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -91,7 +93,14 @@ function wpm_add_admin() {
         'color_text_bottom' => '#FFFFFF',
         'text_maintenance' => __('This site is down for maintenance', 'wp-maintenance'),
         'userlimit' => 'administrator',
-        'image' => WP_PLUGIN_URL.'/wp-maintenance/default.png',
+        'image' => WP_PLUGIN_URL.'/wp-maintenance/images/default.png',
+        'font_title' => 'Acme',
+        'font_title_size' => 40,
+        'font_text' => 'Acme',
+        'font_text_size' => 40,
+        'font_text_bottom' => 'Acme',
+        'font_bottom_size' => 12,
+        'font_cpt' => 'Acme',
     );
     $getMaintenanceSettings = get_option('wp_maintenance_settings');
     if (!empty($getMaintenanceSettings)) {
@@ -102,169 +111,8 @@ function wpm_add_admin() {
     update_option('wp_maintenance_settings', $wp_maintenanceAdminOptions);
     if(!get_option('wp_maintenance_active')) { update_option('wp_maintenance_active', 0); }
 
-    $wp_maintenanceStyles = '
-h1 {
-    margin-left:auto;
-    margin-right:auto;
-    width: 700px;
-    padding: 10px;
-    text-align:center;
-    color: #_COLORTXT;
-}
-
-body {
-    background: none repeat scroll 0 0 #_COLORBG;
-    color: #_COLORTXT;
-    font: 12px/1.5em Arial,Helvetica,Sans-serif;
-    padding:0;
-    margin:0;
-}
-#header {
-    clear: both;
-    padding: 5px 0 10px;
-    position: relative;
-}
-.full {
-    margin: 0 auto;
-    width: 720px;
-}
-#logo {
-    text-align: center;
-}
-#main {
-    padding: 0px 50px;
-}
-#main .block {
-    font-size: 13px;
-    margin-bottom: 30px;
-}
-#main .block h3 {
-    line-height: 60px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-#main #intro h3 {
-    font-size: 40px;
-}
-#main #intro p {
-    font-family: Muli,sans-serif;
-    font-size: 16px;
-    line-height: 22px;
-    text-align: center;
-}
-
-a:link {color: #_COLORTXT;text-decoration: underline;}
-a:visited {color: #_COLORTXT;text-decoration: underline;}
-a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
-
-
-#maintenance {
-    text-align:center;
-    margin-top:25px;
-}
-
-.cptR-rec_countdown {
-    position: relative;
-    font-family: "Ubuntu";
-    background: #_COLORCPTBG;
-    display: inline-block;
-    line-height: #_DATESIZE px;
-    min-width: 160px;
-    min-height: 60px;
-    padding: 30px 20px 5px 20px;
-    text-transform: uppercase;
-    text-align:center;
-}
-
-#cptR-day, #cptR-hours, #cptR-minutes, #cptR-seconds {
-    color: #_COLORCPT;
-    display: block;
-    font-size: #_DATESIZE;
-    height: 40px;
-    line-height: 18px;
-    text-align: center;
-    float:left;
-}
-#cptR-days-span, #cptR-hours-span, #cptR-minutes-span, #cptR-seconds-span {
-    color: #_COLORCPT;
-    font-size: 10px;
-    padding: 25px 5px 0 2px;
-}
-
-.wpm_horizontal li {
-    display: inline-block;
-    list-style: none;
-    margin:5px;
-    opacity:0.6;
-}
-.wpm_horizontal li:hover {
-    opacity:1;
-}
-#wpm_footer {
-    width: 100%;
-    clear: both;
-    height: 45px;
-    text-align:center;
-    background-color: #_COLOR_BG_BT;
-    color:#_COLOR_TXT_BT;
-    padding-top:10px;
-    position:fixed;
-    bottom:0;
-}
-.wpm_copyright {
-    color:#_COLOR_TXT_BT;
-    font-size: 12px;
-}
-.wpm_copyright a, a:hover, a:visited {
-    color:#_COLOR_TXT_BT;
-    text-decoration:none;
-    font-size: 12px;
-}
-.wpm_social {
-    padding: 0 45px;
-    text-align: center;
-}
-.wpm_newletter {
-    margin:15px 10px;
-    text-align:center;
-}
-@media screen and (min-width: 200px) and (max-width: 480px) {
-    .full {
-        max-width:300px;
-    }
-    #header {
-        padding: 0;
-    }
-    #main {
-        padding: 0;
-    }
-    .wpm_social {
-        padding: 0 15px;
-    }
-    .cptR-rec_countdown {
-        padding:0;
-    }
-    #main .block h3 {
-        line-height: 0px;
-    }
-    #main .block {
-        margin-bottom: 0;
-    }
-    #cptR-days-span, #cptR-hours-span, #cptR-minutes-span, #cptR-seconds-span {
-        font-size: 8px;
-    }
-    #main #intro h3 {
-        font-size: 6vw;
-    }
-}  
-@media screen and (min-width: 480px) and (max-width: 767px) {
-    .full {
-        max-width:342px;
-    }
-}
-    ';
     if(!get_option('wp_maintenance_style') or get_option('wp_maintenance_style')=='') { 
-        update_option('wp_maintenance_style', $wp_maintenanceStyles);
+        update_option('wp_maintenance_style', wpm_print_style());
     }
 }
 
@@ -460,7 +308,7 @@ function wpm_maintenance_mode() {
 
             /* Paramètres par défaut */
             //if($paramMMode['text_maintenance']=="") { $paramMMode['text_maintenance'] = 'Ce site est en maintenance'; }
-            if($paramMMode['image']=="") { $paramMMode['image'] = WP_PLUGIN_URL.'/wp-maintenance/default.png'; }
+            //if($paramMMode['image']=="") { $paramMMode['image'] = WP_PLUGIN_URL.'/wp-maintenance/images/default.png'; }
 
             /* On récupère les tailles de l'image */
             list($width, $height, $type, $attr) = getimagesize($paramMMode['image']);
@@ -484,7 +332,7 @@ function wpm_maintenance_mode() {
 
             if($paramMMode['b_image'] && $paramMMode['b_enable_image']==1) {
                 if($paramMMode['b_repeat_image']=='') { $paramMMode['b_repeat_image'] = 'repeat'; }
-                if($paramMMode['b_fixed_image']=='') { $paramMMode['b_fixed_image'] = 'fixed'; }
+                //if($paramMMode['b_fixed_image']=='') { $paramMMode['b_fixed_image'] = 'fixed'; }
             $addBImage = '
             body {
                 background:url('.$paramMMode['b_image'].') '.$paramMMode['b_repeat_image'].';
@@ -502,7 +350,31 @@ function wpm_maintenance_mode() {
             }';
             }
             if($paramSocialOption['align']=='') { $paramSocialOption['align'] = 'center'; }
+            if($paramMMode['font_title_size']=='') { $paramMMode['font_title_size'] = 40; }
+            if($paramMMode['font_title_style']=='') { $paramMMode['font_title_style'] = 'normal'; }
+            if($paramMMode['font_title_weigth']=='') { $paramMMode['font_title_weigth'] = 'normal'; }
+            if($paramMMode['font_text_size']=='') { $paramMMode['font_text_size'] = 40; }
+            if($paramMMode['font_text_style']=='') { $paramMMode['font_text_style'] = 'normal'; }
+            if($paramMMode['font_text_weigth']=='') { $paramMMode['font_text_weigth'] = 'normal'; }
+            if($paramMMode['font_text_bottom']=='') { $paramMMode['font_text_bottom'] = 'normal'; }
+            if($paramMMode['font_bottom_size']=='') { $paramMMode['font_bottom_size'] = 12; }
+            if($paramMMode['font_bottom_weigth']=='') { $paramMMode['font_bottom_weigth'] = 'normal'; }
+            if($paramMMode['font_bottom_style']=='') { $paramMMode['font_bottom_style'] = 'normal'; }
+            if($paramMMode['font_cpt']=='') { $paramMMode['font_cpt'] = 'Acme'; }
+            if($paramMMode['date_cpt_size']=='') { $paramMMode['date_cpt_size'] = 72; }
             
+            $addStylesheet = '';
+            if($paramMMode['newletter']==1 && $paramMMode['code_newletter']!='') {
+                $nameNl = strpos($paramMMode['code_newletter'], 'wysija_form');
+                $addStylesheet = "<link rel='stylesheet' id='validate-engine-css-css'  href='".WP_PLUGIN_URL."/wysija-newsletters/css/validationEngine.jquery.css' type='text/css' media='all' />
+<style type='text/css'>
+.widget_wysija_cont .wysija-submit {
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>";
+            }    
+                
             $content = '
 <!DOCTYPE html>
 <html lang="fr">
@@ -510,9 +382,24 @@ function wpm_maintenance_mode() {
         <title>'.$site_title." - ".$site_description.'</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="'.__('This site is down for maintenance', 'wp-maintenance').'" />
+        '.$addStylesheet.'
         <style type="text/css">
+@import url(http://fonts.googleapis.com/css?family='.str_replace(' ', '+', $paramMMode['font_title']).'|'.str_replace(' ', '+',$paramMMode['font_text']).'|'.str_replace(' ', '+',$paramMMode['font_text_bottom']).'|'.str_replace(' ', '+',$paramMMode['font_cpt']).');
             '.$wpmStyle.'
             '.$addBImage.'
+            '.$addCSSnl.'
+body {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  top: 0;
+}
+.wpm_newletter {
+    margin-left: auto;
+    margin-right: auto;
+    max-width:100%
+}
 .wpm_social_icon {
     float:left;
     width:'.$paramSocialOption['size'].'px;
@@ -530,7 +417,32 @@ function wpm_maintenance_mode() {
 }
 .cptR-rec_countdown {
     font-size:'.$paramMMode['date_cpt_size'].'px;
+    font-family: '.$paramMMode['font_cpt'].', serif;
 }
+#main #intro h3 {
+    font-size: '.$paramMMode['font_title_size'].'px;
+    font-style: '.$paramMMode['font_title_style'].';
+    font-weight: '.$paramMMode['font_title_weigth'].';
+    font-family: '.$paramMMode['font_title'].', serif;
+}
+#main #intro p {
+    font-family: '.$paramMMode['font_text'].', serif;
+    font-size: '.$paramMMode['font_text_size'].'px;
+    font-style: '.$paramMMode['font_text_style'].';
+    font-weight: '.$paramMMode['font_text_weigth'].';
+}
+.wpm_copyright {
+    font-family: '.$paramMMode['font_text_bottom'].', serif;
+    font-size: '.$paramMMode['font_bottom_size'].'px;
+    font-style: '.$paramMMode['font_bottom_style'].';
+    font-weight: '.$paramMMode['font_bottom_weigth'].';
+}
+
+#logo img {
+    max-width: 100%;
+    height: auto;
+}
+
 @media screen and (min-width: 200px) and (max-width: 480px) {
     #cptR-day, #cptR-hours, #cptR-minutes, #cptR-seconds {
         width:'.($paramMMode['date_cpt_size']*0.9).'px;
