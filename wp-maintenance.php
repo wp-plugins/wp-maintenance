@@ -93,7 +93,7 @@ function wpm_add_admin() {
         'color_text_bottom' => '#FFFFFF',
         'text_maintenance' => __('This site is down for maintenance', 'wp-maintenance'),
         'userlimit' => 'administrator',
-        'image' => WP_PLUGIN_URL.'/wp-maintenance/default.png',
+        'image' => WP_PLUGIN_URL.'/wp-maintenance/images/default.png',
         'font_title' => 'Acme',
         'font_title_size' => 40,
         'font_text' => 'Acme',
@@ -308,7 +308,7 @@ function wpm_maintenance_mode() {
 
             /* Paramètres par défaut */
             //if($paramMMode['text_maintenance']=="") { $paramMMode['text_maintenance'] = 'Ce site est en maintenance'; }
-            if($paramMMode['image']=="") { $paramMMode['image'] = WP_PLUGIN_URL.'/wp-maintenance/default.png'; }
+            //if($paramMMode['image']=="") { $paramMMode['image'] = WP_PLUGIN_URL.'/wp-maintenance/images/default.png'; }
 
             /* On récupère les tailles de l'image */
             list($width, $height, $type, $attr) = getimagesize($paramMMode['image']);
