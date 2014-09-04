@@ -72,7 +72,7 @@ function wpm_getFontsTab() {
  * Returns a select list of Google fonts
  * Feel free to edit this, update the fallbacks, etc.
  */
-function options_typography_get_google_fonts() {
+function wpm_options_typography_get_google_fonts() {
 	// Google Font Defaults
 	$google_faces = array(
 		'Arvo, serif' => 'Arvo',
