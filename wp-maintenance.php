@@ -6,12 +6,13 @@ Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 2.0
+Version: 2.1
 */
 
 
 /*
 Change Log
+03/12/2014 - Correction d'une notice sur un argument déprécié  / Fixed a notice on a depreciated argument
 09/08/2014 - Ajout de Fonts et Styles
 17/07/2014 - Correction bug feuille de style
 20/05/2014 - Correction bug upload d'image
