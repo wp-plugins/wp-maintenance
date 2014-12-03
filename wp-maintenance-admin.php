@@ -20,18 +20,18 @@ if($_POST['action'] == 'update' && $_POST["wp_maintenance_settings"]!='') {
 if(get_option('wp_maintenance_settings')) { extract(get_option('wp_maintenance_settings')); }
 $paramMMode = get_option('wp_maintenance_settings');
 
-if($paramMMode['font_title_size']=='') { $paramMMode['font_title_size'] = 40; }
-if($paramMMode['font_title_style']=='') { $paramMMode['font_title_style'] = 'normal'; }
-if($paramMMode['font_title_weigth']=='') { $paramMMode['font_title_weigth'] = 'normal'; }
-if($paramMMode['font_text_size']=='') { $paramMMode['font_text_size'] = 40; }
-if($paramMMode['font_text_style']=='') { $paramMMode['font_text_style'] = 'normal'; }
-if($paramMMode['font_text_weigth']=='') { $paramMMode['font_text_weigth'] = 'normal'; }
-if($paramMMode['font_text_bottom']=='') { $paramMMode['font_text_bottom'] = 'normal'; }
-if($paramMMode['font_bottom_size']=='') { $paramMMode['font_bottom_size'] = 12; }
-if($paramMMode['font_bottom_weigth']=='') { $paramMMode['font_bottom_weigth'] = 'normal'; }
-if($paramMMode['font_bottom_style']=='') { $paramMMode['font_bottom_style'] = 'normal'; }
-if($paramMMode['font_cpt']=='') { $paramMMode['font_cpt'] = 'Acme'; }
-if($paramMMode['date_cpt_size']=='') { $paramMMode['date_cpt_size'] = 72; }
+if( !isset($paramMMode['font_title_size']) ) { $paramMMode['font_title_size'] = 40; }
+if( !isset($paramMMode['font_title_style']) ) { $paramMMode['font_title_style'] = 'normal'; }
+if( !isset($paramMMode['font_title_weigth']) ) { $paramMMode['font_title_weigth'] = 'normal'; }
+if( !isset($paramMMode['font_text_size']) ) { $paramMMode['font_text_size'] = 40; }
+if( !isset($paramMMode['font_text_style']) ) { $paramMMode['font_text_style'] = 'normal'; }
+if( !isset($paramMMode['font_text_weigth']) ) { $paramMMode['font_text_weigth'] = 'normal'; }
+if( !isset($paramMMode['font_text_bottom']) ) { $paramMMode['font_text_bottom'] = 'normal'; }
+if( !isset($paramMMode['font_bottom_size']) ) { $paramMMode['font_bottom_size'] = 12; }
+if( !isset($paramMMode['font_bottom_weigth']) ) { $paramMMode['font_bottom_weigth'] = 'normal'; }
+if( !isset($paramMMode['font_bottom_style']) ) { $paramMMode['font_bottom_style'] = 'normal'; }
+if( !isset($paramMMode['font_cpt']) ) { $paramMMode['font_cpt'] = 'Acme'; }
+if( !isset($paramMMode['date_cpt_size']) ) { $paramMMode['date_cpt_size'] = 72; }
 
 // Récupère les Rôles et capabilités
 if(get_option('wp_maintenance_limit')) { extract(get_option('wp_maintenance_limit')); }
