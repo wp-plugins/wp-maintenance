@@ -61,7 +61,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '2.0');
+define('WPM_VERSION', '2.1');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -84,7 +84,7 @@ function wpm_get_roles() {
 }
 
 function wpm_add_admin() {
-    $hook = add_options_page("Options pour l'affichage de la page maintenance", "WP Maintenance",  10, __FILE__, "wpm_admin_panel");
+    $hook = add_options_page("Options pour l'affichage de la page maintenance", "WP Maintenance",  'manage_options', __FILE__, "wpm_admin_panel");
     
     $wp_maintenanceAdminOptions = array(
         'color_bg' => "#f1f1f1",
@@ -290,11 +290,10 @@ function wpm_maintenance_mode() {
 
     if ($statusActive == 1) {
 
-        $urlTpl =  get_stylesheet_directory();
+        $urlTpl =  get_stylesheet_directory_uri();
 
         if($paramMMode['pageperso']==1) {
 
-            $urlTpl =  get_stylesheet_directory();
             $content = file_get_contents( $urlTpl. '/maintenance.php' );
             
         } else {
