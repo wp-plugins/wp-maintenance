@@ -47,10 +47,10 @@ $paramSocialOption = get_option('wp_maintenance_social_options');
 
 
 /* Si on réinitialise les feuille de styles  */
-if($_POST['wpm_initcss']==1) {
+if( isset($_POST['wpm_initcss']) && $_POST['wpm_initcss']==1) {
     update_option( 'wp_maintenance_style', wpm_print_style() );
     $options_saved = true;
-    echo '<div id="message" class="updated fade"><p><strong>Feuillez de style réinitialisée !</strong></p></div>';
+    echo '<div id="message" class="updated fade"><p><strong>'.__('The Style Sheet has been reset!', 'wp-maintenance').'</strong></p></div>';
 }
 
 ?>

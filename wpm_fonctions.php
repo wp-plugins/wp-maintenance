@@ -124,9 +124,10 @@ h1 {
 }
 
 body {
-    background: none repeat scroll 0 0 #_COLORBG;
+    /*background: none repeat scroll 0 0 #_COLORBG;*/
     color: #_COLORTXT;
     font: 12px/1.5em Arial,Helvetica,Sans-serif;
+    min-height:100%
     margin:0;
     padding:0;
 }
@@ -209,18 +210,30 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
 .wpm_horizontal li:hover {
     opacity:0.5;
 }
-#wpm_footer {
+* html div#wrapper {
+        height: 100%; /* Fix IE 5.5, 6 and 7 */
+}
+div#wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-height: 100%;
+        width: 100%;
+}
+div#wpm_footer {
     width: 100%;
     clear: both;
-    height: 150px;
+    /*height: 150px;*/
     text-align:center;
     background-color: #_COLOR_BG_BT;
     color:#_COLOR_TXT_BT;
     padding-top:10px;
     margin-top: 40px;
     font-size: 12px;
-    position:relative;
+    position:absolute;
     bottom:0;
+    overflow:auto;
+    left: 0; right: 0;
 }
 .wpm_copyright {
     color:#_COLOR_TXT_BT;
@@ -269,9 +282,9 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
 }   
 
 @media screen and (min-width: 480px) and (max-width: 767px) {
-    .full {
-        max-width:342px;
-    }
+    /*.full {
+        max-width:767px;
+    }*/
 }
     ';   
 }

@@ -1,10 +1,10 @@
-﻿=== Plugin Name ===
+=== Plugin Name ===
 Contributors: Florent73
 Donate link: 
 Tags: wordpress maintenance plugin
 Requires at least: 3.0
-Tested up to: 4.0.1
-Stable tag: 2.1
+Tested up to: 4.1
+Stable tag: 2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,11 +65,14 @@ Oui mais merci de me soumettre les modifications souhaitées afin de mettre à j
 
 == Upgrade Notice ==
 
-= 2.1 =
+= 2.2 =
 Cette version est stable / This version is stable
 
 
 == Changelog ==
+
+= 2.2 =
+* Ajout d'une notification dans la barre d'admin et résolution de divers bugs CSS / Added a notification in the admin bar & fixed various CSS bugs
 
 = 2.1 =
 * Correction d'une notice sur un argument déprécié  / Fixed a notice on a depreciated argument

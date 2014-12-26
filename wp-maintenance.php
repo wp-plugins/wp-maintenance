@@ -6,13 +6,14 @@ Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
 Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
 Author: Florent Maillefaud
 Author URI: http://www.restezconnectes.fr/
-Version: 2.1
+Version: 2.2
 */
 
 
 /*
 Change Log
-03/12/2014 - Correction d'une notice sur un argument déprécié  / Fixed a notice on a depreciated argument
+04/12/2014 - Ajout d'une notification dans la barre d'admin / Résolution de divers bug CSS
+03/12/2014 - Correction d'une notice sur un argument déprécié
 09/08/2014 - Ajout de Fonts et Styles
 17/07/2014 - Correction bug feuille de style
 20/05/2014 - Correction bug upload d'image
@@ -62,7 +63,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '2.1');
+define('WPM_VERSION', '2.2');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -75,6 +76,33 @@ function wpm_admin_panel() {
     include("wp-maintenance-admin.php");
 }
 
+/* Ajout feuille CSS pour l'admin barre */
+function wpm_admin_head() {
+    echo '<link rel="stylesheet" type="text/css" media="all" href="' .plugins_url('wpm-admin.css', __FILE__). '">';
+}
+add_action('admin_head', 'wpm_admin_head');
+
+/* Ajout Notification admin barre */
+function wpm_add_menu_admin_bar() {
+    global $wp_admin_bar;
+    
+    $checkActive = get_option('wp_maintenance_active');
+    if(isset($checkActive) && $checkActive==1) {
+        $textAdmin = '<img src="'.WP_PLUGIN_URL.'/wp-maintenance/images/lock.png" style="padding: 6px 0;float:left;margin-right: 6px;">Mode maintenance activé';
+    
+        $wp_admin_bar->add_menu(array(
+            'title' => $textAdmin, // Titre du menu
+            'href' => WPM_SETTINGS, // Lien du menu
+            'meta' => array(
+                'class' => 'wpmbackground'
+            )
+            /*'parent' => "wp-logo", // Parent du menu*/
+        ));
+    } 
+}
+add_action('admin_bar_menu', 'wpm_add_menu_admin_bar', 999);
+
+/* Liste les différents Rôles */
 function wpm_get_roles() {
 
     $wp_roles = new WP_Roles();
@@ -251,8 +279,8 @@ function wpm_maintenance_mode() {
 
     get_currentuserinfo();
 
-    if(!$paramMMode['active']) { $paramMMode['active'] = 0 ; }
-    if(!$statusActive) { update_option('wp_maintenance_active', $paramMMode['active']); }
+    if( !isset($paramMMode['active']) ) { $paramMMode['active'] = 0 ; }
+    if( !isset($statusActive) ) { update_option('wp_maintenance_active', $paramMMode['active']); }
 
     $paramSocialOption = get_option('wp_maintenance_social_options');
     
@@ -332,22 +360,21 @@ function wpm_maintenance_mode() {
 
             if($paramMMode['b_image'] && $paramMMode['b_enable_image']==1) {
                 if($paramMMode['b_repeat_image']=='') { $paramMMode['b_repeat_image'] = 'repeat'; }
-                //if($paramMMode['b_fixed_image']=='') { $paramMMode['b_fixed_image'] = 'fixed'; }
+                $optionBackground = '';
+                if(isset($paramMMode['b_fixed_image']) && $paramMMode['b_fixed_image']==1) { 
+                    $optionBackground = 'background-attachment:fixed;';
+                }
             $addBImage = '
-            body {
-                background:url('.$paramMMode['b_image'].') '.$paramMMode['b_repeat_image'].';
-                background-attachment:'.$paramMMode['b_fixed_image'].';
-                padding:0;
-                margin:0;
-            }';
+div#wrapper {
+    background:url('.$paramMMode['b_image'].') '.$paramMMode['b_repeat_image'].';'.$optionBackground.'padding:0;margin:0;
+    background-size: cover;
+}';
             }
             if($paramMMode['b_pattern']>0 && $paramMMode['b_enable_image']==1) {
             $addBImage = '
-            body {
-                background:url('.WP_PLUGIN_URL.'/wp-maintenance/images/pattern'.$paramMMode['b_pattern'].'.png) '.$paramMMode['b_repeat_image'].'  '.$paramMMode['color_bg'].';
-                    padding:0;
-                    margin:0;
-            }';
+div#wrapper {
+    background:url('.WP_PLUGIN_URL.'/wp-maintenance/images/pattern'.$paramMMode['b_pattern'].'.png) '.$paramMMode['b_repeat_image'].'  '.$paramMMode['color_bg'].';padding:0;margin:0;
+}';
             }
             if($paramSocialOption['align']=='') { $paramSocialOption['align'] = 'center'; }
             if($paramMMode['font_title_size']=='') { $paramMMode['font_title_size'] = 40; }
@@ -381,6 +408,7 @@ function wpm_maintenance_mode() {
     <head>
         <title>'.$site_title." - ".$site_description.'</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=yes" />
         <meta name="description" content="'.__('This site is down for maintenance', 'wp-maintenance').'" />
         '.$addStylesheet.'
         <style type="text/css">
@@ -430,6 +458,7 @@ body {
     font-size: '.$paramMMode['font_text_size'].'px;
     font-style: '.$paramMMode['font_text_style'].';
     font-weight: '.$paramMMode['font_text_weigth'].';
+    line-height: '.($paramMMode['font_text_size']*0.9).'px;
 }
 .wpm_copyright {
     font-family: '.$paramMMode['font_text_bottom'].', serif;
@@ -507,14 +536,14 @@ body {
                      $content .= '
                      </div><!-- div main -->
             </div><!-- div content -->
-        </div><!-- div wrapper -->';
+        ';
                     if($paramSocialOption['position']=='bottom') {
                         $content .= do_shortcode('[wpm_social]');
                     }
                     if($paramMMode['text_bt_maintenance']!='') {
-                        $content .= '<div id="wpm_footer"><p class="wpm_copyright">'.stripslashes($paramMMode['text_bt_maintenance']).'</p></div>';
+                        $content .= '<div id="wpm_footer"><div class="clear"><p class="wpm_copyright">'.stripslashes($paramMMode['text_bt_maintenance']).'</p></div></div>';
                     }
-            $content .='
+            $content .='</div><!-- div wrapper -->
     </body>
 </html>';
         }
