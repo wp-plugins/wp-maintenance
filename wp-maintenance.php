@@ -1,13 +1,15 @@
 <?php
 
 /*
-Plugin Name: WP Maintenance
-Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
-Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
-Author: Florent Maillefaud
-Author URI: http://www.restezconnectes.fr/
-Version: 2.2
-*/
+ * Plugin Name: WP Maintenance
+ * Plugin URI: http://wordpress.org/extend/plugins/wp-maintenance/
+ * Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
+ * Author: Florent Maillefaud
+ * Author URI: http://www.restezconnectes.fr/
+ * Version: 2.3
+ * Text Domain: wp-maintenance
+ * Domain Path: /languages/
+ */
 
 
 /*
@@ -63,7 +65,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '2.2');
+define('WPM_VERSION', '2.3');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -318,12 +320,17 @@ function wpm_maintenance_mode() {
     }
 
     if ($statusActive == 1) {
+        
+        if ( file_exists( get_stylesheet_directory() ) ) {
+            $urlTpl = get_stylesheet_directory();
+        } else {
+            $urlTpl = get_template_directory();
+        }
+        
+        if( $paramMMode['pageperso']==1 && file_exists($urlTpl.'/maintenance.php') ) {
 
-        $urlTpl =  get_stylesheet_directory_uri();
-
-        if($paramMMode['pageperso']==1) {
-
-            $content = file_get_contents( $urlTpl. '/maintenance.php' );
+            include_once( $urlTpl.'/maintenance.php' );
+            die();
             
         } else {
 

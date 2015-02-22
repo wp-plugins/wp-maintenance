@@ -142,12 +142,13 @@ if( isset($_POST['wpm_initcss']) && $_POST['wpm_initcss']==1) {
                              <br />
                              <?php _e('Choose icons size:', 'wp-maintenance'); ?>
                              <select name="wp_maintenance_social_options[size]">
-                                 <option value="16"<?php if($paramSocialOption['size']==16) { echo ' selected'; } ?>>16</option>
-                                 <option value="24"<?php if($paramSocialOption['size']==24) { echo ' selected'; } ?>>24</option>
-                                 <option value="32"<?php if($paramSocialOption['size']==32) { echo ' selected'; } ?>>32</option>
-                                 <option value="32"<?php if($paramSocialOption['size']==48 or $paramSocialOption=='') { echo ' selected'; } ?>>48</option>
-                                 <option value="64"<?php if($paramSocialOption['size']==64) { echo ' selected'; } ?>>64</option>
-                                 <option value="128"<?php if($paramSocialOption['size']==128) { echo ' selected'; } ?>>128</option>
+                             <?php 
+                                    $wpm_tabIcon = array(16, 24, 32, 48, 64, 128);
+                                    foreach($wpm_tabIcon as $wpm_icon) {
+                                        if($paramSocialOption['size']==$wpm_icon) { $selected = ' selected'; } else { $selected = ''; }
+                                        echo '<option value="'.$wpm_icon.'" '.$selected.'>'.$wpm_icon.'</option>';
+                                    }
+                             ?>
                              </select>
                          </li>
                          <li>
@@ -294,7 +295,6 @@ if( isset($_POST['wpm_initcss']) && $_POST['wpm_initcss']==1) {
                                 </div>
                                 <br />
                                 <!-- FIN POLICE DU TEXTE BAS DE PAGE -->
-                                <br /><br />
                         </li>
                         <li>&nbsp;</li>
 

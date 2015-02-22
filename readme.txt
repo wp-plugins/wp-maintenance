@@ -3,8 +3,8 @@ Contributors: Florent73
 Donate link: 
 Tags: wordpress maintenance plugin
 Requires at least: 3.0
-Tested up to: 4.1
-Stable tag: 2.2
+Tested up to: 4.1.1
+Stable tag: 2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,11 +65,14 @@ Oui mais merci de me soumettre les modifications souhaitées afin de mettre à j
 
 == Upgrade Notice ==
 
-= 2.2 =
+= 2.3 =
 Cette version est stable / This version is stable
 
 
 == Changelog ==
+
+= 2.3 =
+* Résolution d'un bug sur tailles des icônes sociaux et sur l'acivation de page maintenance.php du thème / Fixed a bug on sizes of social icons on the theme of maintenance.php page acivation
 
 = 2.2 =
 * Ajout d'une notification dans la barre d'admin et résolution de divers bugs CSS / Added a notification in the admin bar & fixed various CSS bugs
