@@ -241,7 +241,7 @@ function wpm_social_shortcode( $atts ) {
     $countSocial = wpm_array_value_count($paramSocial);
     // Si on est en mobile on réduite les icones
     if ( wp_is_mobile() ) {
-           $paramSocialOption['size'] = 24;
+           $paramSocialOption['size'] = 32;
     }
         
 	// Attributes
