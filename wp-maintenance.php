@@ -6,7 +6,7 @@
  * Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
  * Author: Florent Maillefaud
  * Author URI: http://www.restezconnectes.fr/
- * Version: 2.3
+ * Version: 2.4
  * Text Domain: wp-maintenance
  * Domain Path: /languages/
  */
@@ -14,6 +14,7 @@
 
 /*
 Change Log
+07/03/2015 - Résolution de divers bug CSS
 04/12/2014 - Ajout d'une notification dans la barre d'admin / Résolution de divers bug CSS
 03/12/2014 - Correction d'une notice sur un argument déprécié
 09/08/2014 - Ajout de Fonts et Styles
@@ -65,7 +66,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '2.3');
+define('WPM_VERSION', '2.4');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -238,6 +239,10 @@ function wpm_social_shortcode( $atts ) {
     $paramSocial = get_option('wp_maintenance_social');
     $paramSocialOption = get_option('wp_maintenance_social_options');
     $countSocial = wpm_array_value_count($paramSocial);
+    // Si on est en mobile on réduite les icones
+    if ( wp_is_mobile() ) {
+           $paramSocialOption['size'] = 32;
+    }
         
 	// Attributes
 	extract( shortcode_atts(
@@ -372,14 +377,14 @@ function wpm_maintenance_mode() {
                     $optionBackground = 'background-attachment:fixed;';
                 }
             $addBImage = '
-div#wrapper {
+body {
     background:url('.$paramMMode['b_image'].') '.$paramMMode['b_repeat_image'].';'.$optionBackground.'padding:0;margin:0;
     background-size: cover;
 }';
             }
             if($paramMMode['b_pattern']>0 && $paramMMode['b_enable_image']==1) {
             $addBImage = '
-div#wrapper {
+body {
     background:url('.WP_PLUGIN_URL.'/wp-maintenance/images/pattern'.$paramMMode['b_pattern'].'.png) '.$paramMMode['b_repeat_image'].'  '.$paramMMode['color_bg'].';padding:0;margin:0;
 }';
             }
@@ -459,6 +464,7 @@ body {
     font-style: '.$paramMMode['font_title_style'].';
     font-weight: '.$paramMMode['font_title_weigth'].';
     font-family: '.$paramMMode['font_title'].', serif;
+    line-height: '.($paramMMode['font_text_size']*0.9).'px;
 }
 #main #intro p {
     font-family: '.$paramMMode['font_text'].', serif;
@@ -489,28 +495,41 @@ body {
     #cptR-days-span, #cptR-hours-span, #cptR-minutes-span, #cptR-seconds-span {
         font-size: 8px;
     }
+    #main #intro h3 {
+        font-size: '.($paramMMode['font_title_size']*0.5).'px;
+        line-height: '.($paramMMode['font_text_size']*0.1).'px;
+    }
+    #main #intro p {
+        font-size: '.($paramMMode['font_text_size']*0.5).'px;
+        line-height: '.($paramMMode['font_text_size']*0.1).'px;
+    }
+    .wpm_copyright {
+        font-size: '.($paramMMode['font_bottom_size']*0.8).'px;
+    }
+
 }
         </style>
         '.do_shortcode('[wpm_analytics enable="'.$paramMMode['analytics'].'"]').'
     </head>
     <body>';
+        
+        $content .= '<div id="wrapper">';
         if($paramSocialOption['position']=='top') {
             $content .= do_shortcode('[wpm_social]');
         }
-        $content .= '<div id="wrapper">';
-         if($paramMMode['image']) {
+        if($paramMMode['image']) {
             $content .= '
             <div id="header" class="full">
                 <div id="logo"><img src="'.$paramMMode['image'].'" '.$attr.' /></div>
             </div>
             ';
-         }
-         $content .= '
-             <div id="content" class="full">
-                 <div id="main">';
-                     $content .= '
-                    <div id="intro" class="block"><h3>'.stripslashes($paramMMode['titre_maintenance']).'</h3><p>'.stripslashes($paramMMode['text_maintenance']).'</p></div>';
-                     if( isset($paramMMode['message_cpt_fin']) && $paramMMode['message_cpt_fin']!='' && $paramMMode['date_cpt_aa']!='' && $paramMMode['active_cpt']==1) {
+        }
+        $content .= '
+         <div id="content" class="full">
+             <div id="main">';
+                 $content .= '
+                <div id="intro" class="block"><h3>'.stripslashes($paramMMode['titre_maintenance']).'</h3><p>'.stripslashes($paramMMode['text_maintenance']).'</p></div>';
+        if( isset($paramMMode['message_cpt_fin']) && $paramMMode['message_cpt_fin']!='' && $paramMMode['date_cpt_aa']!='' && $paramMMode['active_cpt']==1) {
                      $content .='
                     <div style="margin-left:auto;margin-right:auto;text-align: center;margin-top:30px;">
                          <script language="JavaScript">
@@ -536,7 +555,7 @@ body {
                     </div>';
                         }
                     if($paramMMode['newletter']==1 && $paramMMode['code_newletter']!='') {
-                        $content .= '<div class="wpm_newletter">'.do_shortcode(stripslashes($paramMMode['code_newletter'])).'</div>';
+                        $content .= '<div class="wpm_newletter">'.do_shortcode(stripslashes($paramMMode['code_newletter'])).'</div><div class="clear">&nbsp;</div>';
                     }
         
                      
@@ -547,10 +566,13 @@ body {
                     if($paramSocialOption['position']=='bottom') {
                         $content .= do_shortcode('[wpm_social]');
                     }
-                    if($paramMMode['text_bt_maintenance']!='') {
+                    
+            $content .='</div><!-- div wrapper -->';
+            
+            if($paramMMode['text_bt_maintenance']!='') {
                         $content .= '<div id="wpm_footer"><div class="clear"><p class="wpm_copyright">'.stripslashes($paramMMode['text_bt_maintenance']).'</p></div></div>';
                     }
-            $content .='</div><!-- div wrapper -->
+            $content .= '
     </body>
 </html>';
         }

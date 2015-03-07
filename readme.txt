@@ -1,10 +1,10 @@
-=== Plugin Name ===
+﻿=== Plugin Name ===
 Contributors: Florent73
 Donate link: 
 Tags: wordpress maintenance plugin
 Requires at least: 3.0
 Tested up to: 4.1.1
-Stable tag: 2.3
+Stable tag: 2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,11 +65,14 @@ Oui mais merci de me soumettre les modifications souhaitées afin de mettre à j
 
 == Upgrade Notice ==
 
-= 2.3 =
+= 2.4 =
 Cette version est stable / This version is stable
 
 
 == Changelog ==
+
+= 2.4 =
+* Résolution de divers bugs CSS / Fixed various CSS bugs
 
 = 2.3 =
 * Résolution d'un bug sur tailles des icônes sociaux et sur l'acivation de page maintenance.php du thème / Fixed a bug on sizes of social icons on the theme of maintenance.php page acivation
