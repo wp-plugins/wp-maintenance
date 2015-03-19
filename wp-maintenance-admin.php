@@ -55,7 +55,7 @@ if( isset($_POST['wpm_initcss']) && $_POST['wpm_initcss']==1) {
 
 ?>
 <style>
-    .sortable { list-style-type: none; margin: 0; padding: 0; width: 35%; }
+    .sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
     .sortable li { padding: 0.4em; padding-left: 1.5em; height: 30px;cursor: pointer; cursor: move;  }
     .sortable li span { font-size: 15px;margin-right: 0.8em;cursor: move; }
     .sortable li:hover { background-color: #d2d2d2; }
@@ -65,19 +65,21 @@ if( isset($_POST['wpm_initcss']) && $_POST['wpm_initcss']==1) {
 </style>
 <style type="text/css">.postbox h3 { cursor:pointer; }</style>
 <div class="wrap">
-
+    
+    <h2 style="font-size: 23px;font-weight: 400;padding: 9px 15px 4px 0px;line-height: 29px;">
+        <?php echo __('WP Maintenance Settings', 'wp-maintenance'); ?>
+    </h2>
+    
     <!-- TABS OPTIONS -->
-    <div id="icon-options-general" class="icon32"><br></div>
-        <h2 class="nav-tab-wrapper">
-            <a id="wpm-menu-general" class="nav-tab nav-tab-active" href="#general" onfocus="this.blur();"><?php _e('General', 'wp-maintenance'); ?></a>
-            <a id="wpm-menu-couleurs" class="nav-tab" href="#couleurs" onfocus="this.blur();"><?php _e('Colors & Fonts', 'wp-maintenance'); ?></a>
-            <a id="wpm-menu-image" class="nav-tab" href="#image" onfocus="this.blur();"><?php _e('Picture', 'wp-maintenance'); ?></a>
-            <a id="wpm-menu-compte" class="nav-tab" href="#compte" onfocus="this.blur();"><?php _e('CountDown', 'wp-maintenance'); ?></a>
-            <a id="wpm-menu-styles" class="nav-tab" href="#styles" onfocus="this.blur();"><?php _e('CSS Style', 'wp-maintenance'); ?></a>
-            <a id="wpm-menu-options" class="nav-tab" href="#options" onfocus="this.blur();"><?php _e('Settings', 'wp-maintenance'); ?></a>
-            <a id="wpm-menu-apropos" class="nav-tab" href="#apropos" onfocus="this.blur();"><?php _e('About', 'wp-maintenance'); ?></a>
-        </h2>
- 
+    <h2 class="nav-tab-wrapper">
+        <a id="wpm-menu-general" class="nav-tab nav-tab-active" href="#general" onfocus="this.blur();"><?php _e('General', 'wp-maintenance'); ?></a>
+        <a id="wpm-menu-couleurs" class="nav-tab" href="#couleurs" onfocus="this.blur();"><?php _e('Colors & Fonts', 'wp-maintenance'); ?></a>
+        <a id="wpm-menu-image" class="nav-tab" href="#image" onfocus="this.blur();"><?php _e('Picture', 'wp-maintenance'); ?></a>
+        <a id="wpm-menu-compte" class="nav-tab" href="#compte" onfocus="this.blur();"><?php _e('CountDown', 'wp-maintenance'); ?></a>
+        <a id="wpm-menu-styles" class="nav-tab" href="#styles" onfocus="this.blur();"><?php _e('CSS Style', 'wp-maintenance'); ?></a>
+        <a id="wpm-menu-options" class="nav-tab" href="#options" onfocus="this.blur();"><?php _e('Settings', 'wp-maintenance'); ?></a>
+        <a id="wpm-menu-apropos" class="nav-tab" href="#apropos" onfocus="this.blur();"><?php _e('About', 'wp-maintenance'); ?></a>
+    </h2>
  
     <div style="margin-left:25px;margin-top: 15px;">
         <form method="post" action="" name="valide_maintenance">
@@ -96,7 +98,7 @@ if( isset($_POST['wpm_initcss']) && $_POST['wpm_initcss']==1) {
                         <!-- TEXTE PERSONNEL POUR LA PAGE -->
                         <li>
                             <h3><?php _e('Title and text for the maintenance page:', 'wp-maintenance'); ?></h3>
-                            <?php _e('Title:', 'wp-maintenance'); ?><br /><input type="text" name="wp_maintenance_settings[titre_maintenance]" value="<?php echo stripslashes($paramMMode['titre_maintenance']); ?>" /><br />
+                            <?php _e('Title:', 'wp-maintenance'); ?><br /><input type="text" name="wp_maintenance_settings[titre_maintenance]" value="<?php echo stripslashes($paramMMode['titre_maintenance']); ?>" size="70" /><br />
                             <?php _e('Text:', 'wp-maintenance'); ?><br /><TEXTAREA NAME="wp_maintenance_settings[text_maintenance]" COLS=70 ROWS=4><?php echo stripslashes($paramMMode['text_maintenance']); ?></TEXTAREA>
                             <h3><?php _e('Text in the bottom of maintenance page:', 'wp-maintenance'); ?></h3>
                             <?php _e('Text:', 'wp-maintenance'); ?><br /><TEXTAREA NAME="wp_maintenance_settings[text_bt_maintenance]" COLS=70 ROWS=4><?php echo stripslashes($paramMMode['text_bt_maintenance']); ?></TEXTAREA>
@@ -124,13 +126,13 @@ if( isset($_POST['wpm_initcss']) && $_POST['wpm_initcss']==1) {
                                     if($paramSocial) { 
                                             foreach($paramSocial as $socialName=>$socialUrl) {
                                          ?>
-                                      <li><span>::</span><img src="<?php echo WPM_ICONS_URL; ?>24x24/<?php echo $socialName; ?>.png" hspace="3" valign="middle" /><?php echo ucfirst($socialName); ?> <input type= "text" name="wp_maintenance_social[<?php echo $socialName; ?>]" value="<?php echo $socialUrl; ?>" onclick="select()" /></li>
+                                      <li><span>::</span><img src="<?php echo WPM_ICONS_URL; ?>24x24/<?php echo $socialName; ?>.png" hspace="3" valign="middle" /><?php echo ucfirst($socialName); ?> <input type= "text" name="wp_maintenance_social[<?php echo $socialName; ?>]" value="<?php echo $socialUrl; ?>" size="50" onclick="select()" /></li>
                                          <?php } ?>
                              <?php 
                                     } else { 
                                         $arr = array('facebook', 'twitter', 'linkedin', 'flickr', 'youtube', 'pinterest', 'vimeo', 'instagram', 'google_plus', 'about_me');
                                         foreach ($arr as &$value) {
-                                            echo '<li><span>::</span><img src="'.WPM_ICONS_URL.'24x24/'.$value.'.png" valign="middle" hspace="3"/>'.ucfirst($value).' <input type= "text" name="wp_maintenance_social['.$value.']" value="'.$paramSocial[$value].'" onclick="select()" ><br />';
+                                            echo '<li><span>::</span><img src="'.WPM_ICONS_URL.'24x24/'.$value.'.png" valign="middle" hspace="3"/>'.ucfirst($value).' <input type="text" size="50" name="wp_maintenance_social['.$value.']" value="'.$paramSocial[$value].'" onclick="select()" ><br />';
                                         }
                                     }
                              ?>
@@ -174,6 +176,8 @@ if( isset($_POST['wpm_initcss']) && $_POST['wpm_initcss']==1) {
                          <li>
                              <h3><?php _e('Enable Newletter:', 'wp-maintenance'); ?></h3>
                                 <input type= "checkbox" name="wp_maintenance_settings[newletter]" value="1" <?php if($paramMMode['newletter']==1) { echo ' checked'; } ?>><?php _e('Yes', 'wp-maintenance'); ?><br /><br />
+                                <?php _e('Enter title for the newletter block:', 'wp-maintenance'); ?><br />
+                                <input type="text" name="wp_maintenance_settings[title_newletter]" size="60" value="<?php echo stripslashes(trim($paramMMode['title_newletter'])); ?>" /><br />
                                 <?php _e('Enter your newletter shortcode here:', 'wp-maintenance'); ?><br />
                                 <input type="text" name="wp_maintenance_settings[code_newletter]" value='<?php echo stripslashes(trim($paramMMode['code_newletter'])); ?>' onclick="select()" />
                             </li>
@@ -517,6 +521,12 @@ if( isset($_POST['wpm_initcss']) && $_POST['wpm_initcss']==1) {
                                     ?>
                                         <input type="checkbox" name="wp_maintenance_limit[<?php echo $role; ?>]" value="<?php echo $role; ?>"<?php echo $limitCheck; ?> /><?php echo $name; ?>&nbsp;
                                     <?php }//end foreach ?>
+                                </li>
+                            <li>&nbsp;</li>
+                             
+                            <li><h3><?php _e('Header Code:', 'wp-maintenance'); ?></h3>
+                                    <?php _e('The following code will add to the <head> tag. Useful if you need to add additional scripts such as CSS or JS.', 'wp-maintenance'); ?>&nbsp;<br /><br />
+                                    <TEXTAREA NAME="wp_maintenance_settings[headercode]" COLS=70 ROWS=14 style="width:80%;"><?php echo stripslashes($paramMMode['headercode']);  ?></TEXTAREA>
                                 </li>
                             <li>&nbsp;</li>
                              

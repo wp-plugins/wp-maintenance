@@ -4,7 +4,7 @@ Donate link:
 Tags: wordpress maintenance plugin
 Requires at least: 3.0
 Tested up to: 4.1.1
-Stable tag: 2.4
+Stable tag: 2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,11 +65,13 @@ Oui mais merci de me soumettre les modifications souhaitées afin de mettre à j
 
 == Upgrade Notice ==
 
-= 2.4 =
+= 2.5 =
 Cette version est stable / This version is stable
 
-
 == Changelog ==
+
+= 2.5 =
+* Résolution de divers bugs CSS, ajout d'un titre encart newsletter, ajout champs code header / Fixed various CSS bugs, adding an input for newsletter title, adding a code header fields
 
 = 2.4 =
 * Résolution de divers bugs CSS / Fixed various CSS bugs
