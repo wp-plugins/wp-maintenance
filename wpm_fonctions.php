@@ -213,7 +213,13 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
 * html div#wrapper {
         height: 100%; /* Fix IE 5.5, 6 and 7 */
 }
-
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+#content {
+    height: 100%;
+}
 #wpm_footer {
     width: 100%;
     clear: both;
@@ -224,10 +230,11 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     padding-top:10px;
     margin-top: 40px;
     font-size: 12px;
-    position: relative;
+    position: absolute;
     text-align: center;
     width: 100%;
     bottom: 0;
+    display: inline-block;
 }
 .wpm_copyright {
     color:#_COLOR_TXT_BT;
@@ -281,6 +288,7 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     /*.full {
         max-width:767px;
     }*/
+    h2 .nav-tab { font-size: 10px; }
 }
     ';   
 }
