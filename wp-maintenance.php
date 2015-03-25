@@ -6,7 +6,7 @@
  * Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
  * Author: Florent Maillefaud
  * Author URI: http://www.restezconnectes.fr/
- * Version: 2.5.1
+ * Version: 2.5.2
  * Text Domain: wp-maintenance
  * Domain Path: /languages/
  */
@@ -14,6 +14,7 @@
 
 /*
 Change Log
+25/03/2015 - Résolution de divers bug CSS
 19/03/2015 - Résolution de divers bugs CSS, ajout d'un titre encart newsletter, ajout champs code header
 07/03/2015 - Résolution de divers bug CSS
 04/12/2014 - Ajout d'une notification dans la barre d'admin / Résolution de divers bug CSS
@@ -67,7 +68,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '2.5.1');
+define('WPM_VERSION', '2.5.2');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -435,6 +436,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
   top: 0;
+  margin: 0;
 }
 .wpm_newletter {
     margin-left: auto;
@@ -504,7 +506,7 @@ body {
     }
     #main #intro p {
         font-size: '.($paramMMode['font_text_size']*0.5).'px;
-        line-height: '.($paramMMode['font_text_size']*0.1).'px;
+        /*line-height: '.($paramMMode['font_text_size']*0.1).'px;*/
     }
     .wpm_copyright {
         font-size: '.($paramMMode['font_bottom_size']*0.8).'px;

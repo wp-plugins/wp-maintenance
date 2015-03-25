@@ -228,6 +228,7 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     background-color: #_COLOR_BG_BT;
     color:#_COLOR_TXT_BT;
     padding-top:10px;
+    padding-bottom: 10px;
     margin-top: 40px;
     font-size: 12px;
     position: absolute;

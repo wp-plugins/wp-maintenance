@@ -4,7 +4,7 @@ Donate link:
 Tags: wordpress maintenance plugin
 Requires at least: 3.0
 Tested up to: 4.1.1
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,10 +65,13 @@ Oui mais merci de me soumettre les modifications souhaitées afin de mettre à j
 
 == Upgrade Notice ==
 
-= 2.5.1 =
+= 2.5.2 =
 Cette version est stable / This version is stable
 
 == Changelog ==
+
+= 2.5.2 =
+* Résolution de divers bugs CSS / Fixed various CSS bugs
 
 = 2.5.1 =
 * Résolution de divers bugs CSS / Fixed various CSS bugs
