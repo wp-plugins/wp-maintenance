@@ -6,7 +6,7 @@
  * Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
  * Author: Florent Maillefaud
  * Author URI: http://www.restezconnectes.fr/
- * Version: 2.5.2
+ * Version: 2.5.3
  * Text Domain: wp-maintenance
  * Domain Path: /languages/
  */
@@ -14,6 +14,7 @@
 
 /*
 Change Log
+28/03/2015 - Résolution de divers bug CSS Responsive
 25/03/2015 - Résolution de divers bug CSS
 19/03/2015 - Résolution de divers bugs CSS, ajout d'un titre encart newsletter, ajout champs code header
 07/03/2015 - Résolution de divers bug CSS
@@ -68,7 +69,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '2.5.2');
+define('WPM_VERSION', '2.5.3');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -353,7 +354,9 @@ function wpm_maintenance_mode() {
             //if($paramMMode['image']=="") { $paramMMode['image'] = WP_PLUGIN_URL.'/wp-maintenance/images/default.png'; }
 
             /* On récupère les tailles de l'image */
-            list($width, $height, $type, $attr) = getimagesize($paramMMode['image']);
+            if($paramMMode['image']!='') {
+                list($width, $height, $type, $attr) = getimagesize($paramMMode['image']);
+            }
 
             /* Date compte à rebours / Convertie en format US */
             $timestamp = strtotime($paramMMode['date_cpt_aa'].'/'.$paramMMode['date_cpt_mm'].'/'.$paramMMode['date_cpt_jj'].' '.$paramMMode['date_cpt_hh'].':'.$paramMMode['date_cpt_mn']);
@@ -469,14 +472,14 @@ body {
     font-style: '.$paramMMode['font_title_style'].';
     font-weight: '.$paramMMode['font_title_weigth'].';
     font-family: '.$paramMMode['font_title'].', serif;
-    line-height: '.($paramMMode['font_text_size']*0.9).'px;
+    /*line-height: '.($paramMMode['font_text_size']*0.9).'px;*/
 }
 #main #intro p {
     font-family: '.$paramMMode['font_text'].', serif;
     font-size: '.$paramMMode['font_text_size'].'px;
     font-style: '.$paramMMode['font_text_style'].';
     font-weight: '.$paramMMode['font_text_weigth'].';
-    line-height: '.($paramMMode['font_text_size']*0.9).'px;
+    /*line-height: '.($paramMMode['font_text_size']*0.9).'px;*/
 }
 .wpm_copyright {
     font-family: '.$paramMMode['font_text_bottom'].', serif;
@@ -502,7 +505,6 @@ body {
     }
     #main #intro h3 {
         font-size: '.($paramMMode['font_title_size']*0.5).'px;
-        line-height: '.($paramMMode['font_text_size']*0.1).'px;
     }
     #main #intro p {
         font-size: '.($paramMMode['font_text_size']*0.5).'px;
