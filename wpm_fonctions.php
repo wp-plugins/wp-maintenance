@@ -151,7 +151,7 @@ body {
     margin-bottom: 30px;
 }
 #main .block h3 {
-    line-height: 60px;
+    line-height: 100%;
     margin-bottom: 40px;
     text-align: center;
 }
@@ -160,7 +160,7 @@ body {
 }
 #main #intro p {
     font-size: 16px;
-    line-height: 22px;
+    line-height: 100%;
     text-align: center;
     word-wrap: break-word;
 }

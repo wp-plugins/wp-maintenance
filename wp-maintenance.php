@@ -6,7 +6,7 @@
  * Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
  * Author: Florent Maillefaud
  * Author URI: http://www.restezconnectes.fr/
- * Version: 2.5.3
+ * Version: 2.5.4
  * Text Domain: wp-maintenance
  * Domain Path: /languages/
  */
@@ -69,7 +69,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '2.5.3');
+define('WPM_VERSION', '2.5.4');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -472,14 +472,14 @@ body {
     font-style: '.$paramMMode['font_title_style'].';
     font-weight: '.$paramMMode['font_title_weigth'].';
     font-family: '.$paramMMode['font_title'].', serif;
-    /*line-height: '.($paramMMode['font_text_size']*0.9).'px;*/
+    line-height: 100%;
 }
 #main #intro p {
     font-family: '.$paramMMode['font_text'].', serif;
     font-size: '.$paramMMode['font_text_size'].'px;
     font-style: '.$paramMMode['font_text_style'].';
     font-weight: '.$paramMMode['font_text_weigth'].';
-    /*line-height: '.($paramMMode['font_text_size']*0.9).'px;*/
+    line-height: 100%;
 }
 .wpm_copyright {
     font-family: '.$paramMMode['font_text_bottom'].', serif;
@@ -505,10 +505,11 @@ body {
     }
     #main #intro h3 {
         font-size: '.($paramMMode['font_title_size']*0.5).'px;
+        line-height: 100%;
     }
     #main #intro p {
         font-size: '.($paramMMode['font_text_size']*0.5).'px;
-        /*line-height: '.($paramMMode['font_text_size']*0.1).'px;*/
+        line-height: 100%;
     }
     .wpm_copyright {
         font-size: '.($paramMMode['font_bottom_size']*0.8).'px;
