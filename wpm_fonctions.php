@@ -178,7 +178,7 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     position: relative;
     background: #_COLORCPTBG;
     display: inline-block;
-    line-height: #_DATESIZE px;
+    line-height: 100%;
     min-width: 160px;
     min-height: 60px;
     padding: 30px 20px 5px 20px;

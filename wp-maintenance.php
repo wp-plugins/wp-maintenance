@@ -6,7 +6,7 @@
  * Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
  * Author: Florent Maillefaud
  * Author URI: http://www.restezconnectes.fr/
- * Version: 2.5.4
+ * Version: 2.5.5
  * Text Domain: wp-maintenance
  * Domain Path: /languages/
  */
@@ -14,6 +14,7 @@
 
 /*
 Change Log
+16/04/2015 - Résolution de divers bug CSS
 28/03/2015 - Résolution de divers bug CSS Responsive
 25/03/2015 - Résolution de divers bug CSS
 19/03/2015 - Résolution de divers bugs CSS, ajout d'un titre encart newsletter, ajout champs code header
@@ -69,7 +70,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '2.5.4');
+define('WPM_VERSION', '2.5.5');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -306,7 +307,7 @@ function wpm_maintenance_mode() {
     if( current_user_can('administrator') == true ) {
         $statusActive = 0;
     }
-
+    
     /* Si on désactive le mode maintenance en fin de compte à rebours */
     if($paramMMode['disable']==1 && $statusActive == 1) {
 
@@ -429,6 +430,7 @@ body {
         <meta name="description" content="'.__('This site is down for maintenance', 'wp-maintenance').'" />
         '.$addStylesheet.'
         <style type="text/css">
+        /* VERSION '.WPM_VERSION.' */
 @import url(http://fonts.googleapis.com/css?family='.str_replace(' ', '+', $paramMMode['font_title']).'|'.str_replace(' ', '+',$paramMMode['font_text']).'|'.str_replace(' ', '+',$paramMMode['font_text_bottom']).'|'.str_replace(' ', '+',$paramMMode['font_cpt']).');
             '.$wpmStyle.'
             '.$addBImage.'
