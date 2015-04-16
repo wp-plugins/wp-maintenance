@@ -307,7 +307,7 @@ function wpm_maintenance_mode() {
     if( current_user_can('administrator') == true ) {
         $statusActive = 0;
     }
-
+    
     /* Si on désactive le mode maintenance en fin de compte à rebours */
     if($paramMMode['disable']==1 && $statusActive == 1) {
 
@@ -430,6 +430,7 @@ body {
         <meta name="description" content="'.__('This site is down for maintenance', 'wp-maintenance').'" />
         '.$addStylesheet.'
         <style type="text/css">
+        /* VERSION '.WPM_VERSION.' */
 @import url(http://fonts.googleapis.com/css?family='.str_replace(' ', '+', $paramMMode['font_title']).'|'.str_replace(' ', '+',$paramMMode['font_text']).'|'.str_replace(' ', '+',$paramMMode['font_text_bottom']).'|'.str_replace(' ', '+',$paramMMode['font_cpt']).');
             '.$wpmStyle.'
             '.$addBImage.'
