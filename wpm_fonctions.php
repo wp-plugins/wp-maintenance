@@ -219,6 +219,7 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
 }
 #content {
     height: 100%;
+    clear: both;
 }
 #wpm_footer {
     width: 100%;
@@ -229,7 +230,7 @@ a:hover, a:focus, a:active {color: #_COLORTXT;text-decoration: underline;}
     color:#_COLOR_TXT_BT;
     padding-top:10px;
     padding-bottom: 10px;
-    margin-top: 40px;
+    margin-top: 15px;
     font-size: 12px;
     position: absolute;
     text-align: center;

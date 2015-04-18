@@ -6,7 +6,7 @@
  * Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
  * Author: Florent Maillefaud
  * Author URI: http://www.restezconnectes.fr/
- * Version: 2.5.5
+ * Version: 2.5.6
  * Text Domain: wp-maintenance
  * Domain Path: /languages/
  */
@@ -14,6 +14,7 @@
 
 /*
 Change Log
+18/04/2015 - Fixed a bug on the end of message counter
 16/04/2015 - Résolution de divers bug CSS
 28/03/2015 - Résolution de divers bug CSS Responsive
 25/03/2015 - Résolution de divers bug CSS
@@ -494,6 +495,15 @@ body {
     max-width: 100%;
     height: auto;
 }
+.clear { clear:both; }
+#main #countdown {
+    clear:both;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+    margin-top:30px;
+    /*min-height:150px;*/
+}
 
 @media screen and (min-width: 200px) and (max-width: 480px) {
     #cptR-day, #cptR-hours, #cptR-minutes, #cptR-seconds {
@@ -542,7 +552,7 @@ body {
                 <div id="intro" class="block"><h3>'.stripslashes($paramMMode['titre_maintenance']).'</h3><p>'.stripslashes($paramMMode['text_maintenance']).'</p></div>';
         if( isset($paramMMode['message_cpt_fin']) && $paramMMode['message_cpt_fin']!='' && $paramMMode['date_cpt_aa']!='' && $paramMMode['active_cpt']==1) {
                      $content .='
-                    <div style="margin-left:auto;margin-right:auto;text-align: center;margin-top:30px;">
+                    <div id="countdown">
                          <script language="JavaScript">
                             TargetDate = "'.$dateCpt.'";
                             BackColor = "'.$paramMMode['color_cpt_bg'].'";
@@ -558,9 +568,10 @@ body {
                      if($paramMMode['active_cpt_s']==1) {
                         $content .= '<div id="cptR-seconds">%%S%%<br /><span id="cptR-seconds-span">'.__('Seconds', 'wp-maintenance').'</span></div>';
                      }
-                     $content .= "';
-                            FinishMessage = '".stripslashes($paramMMode['message_cpt_fin'])."';
-                        </script>";
+                     $content .= "';";
+                     $content .='
+                            FinishMessage = "'.stripslashes($paramMMode['message_cpt_fin']).'";
+                        </script>';
                      $content .= '
                         <script language="JavaScript" src="'.WP_PLUGIN_URL.'/wp-maintenance/wpm-cpt-script.js"></script>
                     </div>';
@@ -584,6 +595,7 @@ body {
             if($paramMMode['text_bt_maintenance']!='') {
                         $content .= '<div id="wpm_footer"><div class="clear"><p class="wpm_copyright">'.stripslashes($paramMMode['text_bt_maintenance']).'</p></div></div>';
                     }
+            
             $content .= '
     </body>
 </html>';
