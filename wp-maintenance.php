@@ -6,7 +6,7 @@
  * Description: Le plugin WP Maintenance vous permet de mettre votre site en attente le temps pour vous de faire une maintenance ou du lancement de votre site. Personnalisez cette page de maintenance avec une image, un compte à rebours, etc... / The WP Maintenance plugin allows you to put your website on the waiting time for you to do maintenance or launch your website. Personalize this page with picture, countdown...
  * Author: Florent Maillefaud
  * Author URI: http://www.restezconnectes.fr/
- * Version: 2.5.6
+ * Version: 2.5.7
  * Text Domain: wp-maintenance
  * Domain Path: /languages/
  */
@@ -14,6 +14,7 @@
 
 /*
 Change Log
+30/04/2015 - Résolution bug fonction php / Fixed bug php function
 18/04/2015 - Fixed a bug on the end of message counter
 16/04/2015 - Résolution de divers bug CSS
 28/03/2015 - Résolution de divers bug CSS Responsive
@@ -71,7 +72,7 @@ function wpm_make_multilang() {
 }
 
 /* Ajoute la version dans les options */
-define('WPM_VERSION', '2.5.5');
+define('WPM_VERSION', '2.5.7');
 $option['wp_maintenance_version'] = WPM_VERSION;
 if( !get_option('wp_maintenance_version') ) {
     add_option('wp_maintenance_version', $option);
@@ -355,11 +356,6 @@ function wpm_maintenance_mode() {
             //if($paramMMode['text_maintenance']=="") { $paramMMode['text_maintenance'] = 'Ce site est en maintenance'; }
             //if($paramMMode['image']=="") { $paramMMode['image'] = WP_PLUGIN_URL.'/wp-maintenance/images/default.png'; }
 
-            /* On récupère les tailles de l'image */
-            if($paramMMode['image']!='') {
-                list($width, $height, $type, $attr) = getimagesize($paramMMode['image']);
-            }
-
             /* Date compte à rebours / Convertie en format US */
             $timestamp = strtotime($paramMMode['date_cpt_aa'].'/'.$paramMMode['date_cpt_mm'].'/'.$paramMMode['date_cpt_jj'].' '.$paramMMode['date_cpt_hh'].':'.$paramMMode['date_cpt_mn']);
             $dateCpt = date('m/d/Y h:i A', $timestamp);
@@ -541,7 +537,7 @@ body {
         if($paramMMode['image']) {
             $content .= '
             <div id="header" class="full">
-                <div id="logo"><img src="'.$paramMMode['image'].'" '.$attr.' /></div>
+                <div id="logo"><img src="'.$paramMMode['image'].'" /></div>
             </div>
             ';
         }
